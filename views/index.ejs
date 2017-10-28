@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+        <html lang="pt">
+                
+                
+                <head>
+                        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+               <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+                    <script src="node_modules\jquery-validation\dist\jquery.validate.js" type="text/javascript"></script>
+                    <link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
+
+                    <title> mainpage</title>
+                    <link href="css\bootstrap.min.css" rel="stylesheet">
+                    <link href="\estilo.css" rel="stylesheet">
+                
+                </head>
+                
+                
+            <body>
+                <div id="wrapper">
+                </style>
+                
+                <header class="index-header">
+                    <div class="menu">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <img src="\heart.png" class="dropdown" alt="coracao"> </div>
+                
+                        </div>
+                    </div>
+                </header>
+                <div id="button-nav">
+                    <img src="\3lines.png" class="zxc">
+                    <nav class="col-sm-3 col-md-2  bg-light sidebar container-fluid">
+                        <ul class="nav nav-pills flex-column">
+                        <li>
+                        <img src="\man.png" alt="">
+                        
+                        
+                        </li>
+<li class="nav-item">
+                                <p id="welcome"> Bem-vindo  ! <span class="sr-only">(current)</span></p>
+                            </li>
+<br>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> Carteira de Vacinação <span class="sr-only">(current)</span></a>
+                            </li>
+                            <form  action="/logout" method="get">
+                            <br>
+                            <li class="nav-item">
+                                <input  type="submit" id="logout" value="Logout" href="#"></input>
+                            </li>
+                            </form>
+                        </ul>
+                
+                
+                    </nav>
+                
+                </div>
+                
+             
+             
+
+                
+                
+                        <script>
+
+                            
+                            $(document).ready(function() {
+                                var now = new Date();
+                
+                                var day = ("0" + now.getDate()).slice(-2);
+                                var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                
+                                var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                                $('#datePicker').attr('max', today);
+
+                                $('#todayis').val(today)
+                                $('#datePicker').val(today)
+                                $('#lastupdate').val(today)
+                                $("#datepicker").datepicker({maxDate: '0'});
+                
+                                $('#test').click(function() {
+                
+                                    testClicked();
+                                    
+                                });
+                            });
+                
+                            function testClicked() {
+                
+                                console.log($('#datePicker').val());
+                            }
+                        </script>
+                      <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Adicione uma Vacina</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                        <form class="formclass" id="formvalid" action="/vacinas" method="POST">
+                            <label for="fname">Nome da Vacina:<br></label>
+                            <input type="text"  id="nomevc" name="nomevc" placeholder="Nome da vacina" required maxlength="200">
+                
+                            <br>
+                           
+                                <label for="fname">Data de Aplicação:<br></label>
+                                <input type="date" min="1900-01-01" max="2017-10-10"  id="datePicker" required name="Date">
+                               <br>
+                    
+                                <input type="hidden" id="todayis" name="current_date"   readonly="readonly">
+                              
+                                    <input type="hidden" id="lastupdate" name="lastupdate"   readonly="readonly">
+                          
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        
+                        <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+        
+                                                   <!-- Second Modal -->
+
+
+
+                <!-- JS code -->
+                <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+                </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
+                </script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
+                </script>
+             
+
+                    
+                    
+
+            
+                    <div id="container-table">
+                        <table class ="container">
+                            <thead>
+                                <tr>
+                  
+                                    <th><h1>Nome da Vacina</h1></th>
+                                    <th><h1>Data da Aplicação</h1></th>
+                                    <th><h1>Data do Cadastro no Site</h1></th>
+                                    <th><h1>Data da Última Atualização</h1></th>
+                                    <th><h1>Editar</h1></th>
+                                    <th><h1>Deletar</h1></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <% for(var i=1; i<vacinas.length; i++) {
+                                        %> 
+                                        <tr id="<%=i%>">
+                                    <th scope="row" ><%= vacinas[i].nomevc %></th>
+                                    <td><%= vacinas[i].Date %></td>
+                                    <td><%= vacinas[i].current_date %></td>
+                                    <td><%= vacinas[i].lastupdate %></td>
+                                                                      
+                                    <td>   
+                                            <form  action="/variable" method="POST">
+                                                
+                                                <input type="hidden"  name="old" value="<%= vacinas[i].nomevc %>" readonly="readonly">
+
+                                          <form action="/variable" method="POST">
+                                        <button type="submit" data-toggle="modal" id="editbtn" class="btn btn-default" data-target="#myModal2" data-whatever="/update-document?_method=put" >Editar</button> </form> </td>
+                                    
+                                        <td>   
+                                                 
+                                                 <form  action="/variable" method="POST">
+                                                    <input type="hidden" name="old" value="<%= vacinas[i].nomevc %>" readonly="readonly">   
+                                                    <form  action="/variable" method="POST">
+                           <button  type="submit" id="delbtn" class="btn tablebtn btn-default btn-confirm" >Deletar</button>
+                                    </form>      
+                                    </tr>
+                                         
+                                                                 <% } %>
+                                
+                            </tbody>
+                        </table >
+                       </div>
+                        
+                        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Confirmar</h4>
+                              </div>
+                              <div class="modal-footer">
+                                    <form action="/delete-document?_method=DELETE" method="POST">
+                                <button type="submit" value="Submit" class="btn btn-default" id="modal-btn-deletar">Deletar</button>
+                                </form>
+
+                                <button type="button" class="btn btn-primary" id="modal-btn-voltar">Voltar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="alert" role="alert" id="result"></div>
+               
+                    <script src="js\bootstrap.js"></script>
+                    <script src="\javascript.js"></script>
+
+   
+                    <div class="d-flex justify-content-around ">
+                        <div data-toggle="modal" data-target="#myModal2" data-whatever="/vacinas" class="menu-vacinacao" id="mv1">
+
+                            <p>Adicione uma vacina</p>
+                        </div>
+                        </div>
+                    </div>
+                </body>
+                
+                <script>
+                
+                    $(document).ready(function() {
+                        $('#button-nav').click(function() {
+                
+                            $('.sidebar').slideToggle("slow");
+                        });
+                    });
+                </script>
+                <script>
+                    var form = document.getElementsByClassName("formclass");
+
+
+                </script>
+                <script>
+
+
+                        app.post('/quotes', (req, res) => {
+                  console.log('Hellooooooooooooooooo!')
+                })
+                    $(document).ready(function() {
+                        $('#mv1').click(function() {
+                
+                            $('.vacinas').show("slow");
+                        });
+                    });
+
+
+
+                    
+                </script>
+<script>
+
+
+
+  $('#myModal2').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+   
+    var modal = $(this)
+
+    $('.formclass').attr('action', recipient);
+
+  })
+
+
+  var modalConfirm = function(callback){
+  
+  $(".btn-confirm").on("click", function(){
+    $("#mi-modal").modal('show');
+  });
+
+  $("#modal-btn-deletar").on("click", function(){
+    callback(true);
+    $("#mi-modal").modal('hide');
+  });
+  
+  $("#modal-btn-voltar").on("click", function(){
+    callback(false);
+    $("#mi-modal").modal('hide');
+  });
+};
+
+modalConfirm(function(confirm){
+
+});
+
+
+$().ready(function() {
+$("#formvalid").validade()})
+
+  </script>
+
+<footer class="footer">
+        
+ 
+      <div class="left">
+       © 2017 Heart Healthcare
+       <a href="mailto:rdealmeidarosa@gmail.com">rdealmeidarosa@gmail.com</a>
+       <a href="https://github.com/RhaegonGrey" class="ext-link footerCopyright">Designed by <span>Rafael Rosa</span></strong></a>
+       </div>
+       
+  
+</footer>
