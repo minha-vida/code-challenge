@@ -8,18 +8,18 @@
                <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
-                    <script src="node_modules\jquery-validation\dist\jquery.validate.js" type="text/javascript"></script>
+                    <script src="\node_modules\jquery-validation\dist\jquery.validate.js" type="text/javascript"></script>
                     <link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
 
                     <title> mainpage</title>
-                    <link href="css\bootstrap.min.css" rel="stylesheet">
-                    <link href="\estilo.css" rel="stylesheet">
+                    <link href="\css\bootstrap.min.css" rel="stylesheet">
+                    <link href="estilo.css" rel="stylesheet">
                 
                 </head>
                 
                 
             <body>
-                <div id="wrapper">
+        <div id="wrapper">
                 </style>
                 
                 <header class="index-header">
@@ -210,7 +210,7 @@
                         
                         <div class="alert" role="alert" id="result"></div>
                
-                    <script src="js\bootstrap.js"></script>
+                    <script src="\js\bootstrap.js"></script>
                     <script src="\javascript.js"></script>
 
    
@@ -221,6 +221,7 @@
                         </div>
                         </div>
                     </div>
+                    
                 </body>
                 
                 <script>
@@ -260,7 +261,7 @@
 
   $('#myModal2').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) 
-   
+    var recipient = button.data('whatever')
     var modal = $(this)
 
     $('.formclass').attr('action', recipient);
