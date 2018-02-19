@@ -1,0 +1,37 @@
+{
+  "name": "rafael.rosa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "bootbox": "^4.4.0",
+    "bootstrap": "^4.0.0-beta.2",
+    "connect-mongo": "^2.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "express-validator": "^4.2.1",
+    "jquery": "^3.2.1",
+    "jquery-form-validator": "^2.3.77",
+    "jquery-validation": "^1.17.0",
+    "jsdom": "^11.3.0",
+    "method-override": "^2.3.10",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.12.4",
+    "passport": "^0.4.0",
+    "popper": "^1.0.0",
+    "popper.js": "^1.12.5",
+    "webpack": "^3.8.1",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}

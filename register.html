@@ -1,0 +1,58 @@
+<html lang="pt">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+                    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+                    <div class="user">
+                            <header class="user__header">
+                                    <img src="\heart.png" alt="coracao"> 
+                                    
+                                <h1 class="user__title">Bem-vindo ao Heart Healthcare</h1>
+                            </header>
+                            <body class="reg">
+                            <form class="form" name= "registration" action="/registrar" method="post">
+                                    <div class="form__group">
+                                            <input type="text" required placeholder="Nome Completo" name="nome_completo" class="form__input" />
+                                        </div>
+                                <div class="form__group">
+                                    <input type="text"  required data-validation="alphanumeric" data-validation-allowing="-_"  placeholder="Usuário" name="username"class="form__input" />
+                                </div>
+                                
+                                <div class="form__group">
+                                    <input type="password" required placeholder="Senha" name="password" class="form__input" />
+                                </div>
+                                
+                                <div class="form__group">
+                                    <input type="password" required placeholder="Senha"  name="passwordConf" class="form__input" />
+                                </div>
+                                
+                                <button class="btn" id="regist-btn" value="submit" type="submit">Registrar</button>
+                            </form>
+                        </div>
+
+    <script src="\js\bootstrap.js">
+    
+    </script>
+
+    <link href="\estilo.css" rel="stylesheet">
+
+    <link href="\css\bootstrap.min.css" rel="stylesheet">
+</body>
+
+<footer class="mainfooter">
+                      
+               
+					<div class="left">
+					 © 2017 Heart Healthcare
+                     <a href="mailto:rdealmeidarosa@gmail.com">rdealmeidarosa@gmail.com</a>
+                     <a href="https://github.com/RhaegonGrey" class="ext-link footerCopyright">Designed by <span>Rafael Rosa</span></strong></a>
+					 </div>
+					 
+				
+</footer>
+
+
+
+<script src="node_modules\jquery-validation\dist\jquery.validate.js" type="text/javascript"></script>
+<script src="\js\form-validation.js"  type="text/javascript"></script>
