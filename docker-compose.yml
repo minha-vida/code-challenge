@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  cc_carteiravacinacao:
+    image: cc_carteiravacinacao
+    build:
+      context: .
+      dockerfile: CC_CarteiraVacinacao\Dockerfile
