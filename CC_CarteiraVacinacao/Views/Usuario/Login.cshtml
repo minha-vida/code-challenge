@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<div class="col-md-12">
+    <div class="col-xs-12 col-md-6">
+        <form action="/Usuario/ValidateLogin/" method="post" class="form-group">
+            @Html.AntiForgeryToken()
+            <label for="Email_User">E-Mail: </label>
+            <input type="text" class="form-control" id="Email_User" name="email" value="" />
+            <label for="Pass_User">Password: </label>
+            <input type="password" class="form-control" id="Pass_User" name="password" value="" />
+            <br />
+            <input type="submit" class="btn btn-default" id="SendAway" />
+        </form>
+    </div>
+    <div class="col-md-12">
+        Não possui cadastro para manter sua carteira de vacinação?
+        @Html.ActionLink("Registre-se Aqui!", "Registro", "Usuario")
+        e liberte-se do papel que você provávelmente já perdeu...
+    </div>
+</div>
