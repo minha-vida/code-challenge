@@ -1,0 +1,17 @@
+D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=VacinaMinhaDeCadaDia
+--content-root=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Home\About.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Home\Contact.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Home\Index.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Pessoa\Cadastro.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Pessoa\Index.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Pessoa\VinculoVacina.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Shared\Error.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Shared\_Layout.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Shared\_ValidationScriptsPartial.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Vacina\Cadastro.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\Vacina\Index.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\_ViewImports.cshtml
+--file=D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\Views\_ViewStart.cshtml

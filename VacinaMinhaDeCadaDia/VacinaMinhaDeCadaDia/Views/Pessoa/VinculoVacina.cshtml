@@ -1,0 +1,99 @@
+﻿@model VacinaMinhaDeCadaDia.ViewModel.VinculoVacinaViewModel
+
+@{
+    ViewData["Title"] = "VinculoVacina";
+}
+
+<h2>VinculoVacina</h2>
+
+<h4>Abaixo se encontram as vacinas atuais do Usuario:</h4>
+
+<div class="wrapper">
+    <div class="table-responsive">
+        <table class="table" id="listagem-vacinas-antigas">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>AplicadaEm</th>
+                    <th class="col-xs-1">Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<h4>Alguma vacina nova? vincule abaixo</h4>
+
+<label for="DataDeAplicacao">Data de Aplicação:</label>
+<input type="text" id="DataDeAplicacao"/>
+
+<div class="wrapper">
+    <div class="table-responsive">
+        <table class="table" id="listagem-vacinas-novas">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CriadaEm</th>
+                    <th class="col-xs-1">Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+
+<script type="text/javascript">
+        var settings = {
+            idPessoa = @Model.idPessoa
+        };
+</script>
+
+<script src="@Url.Content("~/js/Vacina/Vacina-ui.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/Vacina/Vacina.js")" type="text/javascript"></script>
+
+<script type="text/x-jsrender" id="listagem-template-vacinas-antigas">
+    <tr>
+        <td>{{:nome}}</td>
+        <td>{{:aplicadaEm}}</td>
+        <td>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Ações <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#" id="Excluir" data-id="{{:id}}">Excluir</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script type="text/x-jsrender" id="sem-resultado-template">
+    <tr>
+        <td colspan="100%">
+            <div class="alert alert-danger">Nenhum resultado encontrado</div>
+        </td>
+    </tr>
+</script>
+
+<script type="text/x-jsrender" id="listagem-template-vacinas-novas">
+    <tr>
+        <td>{{:nome}}</td>
+        <td>{{:criadaEm}}</td>
+        <td>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Ações <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#" id="Excluir" data-id="{{:id}}">Excluir</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</script>
+}

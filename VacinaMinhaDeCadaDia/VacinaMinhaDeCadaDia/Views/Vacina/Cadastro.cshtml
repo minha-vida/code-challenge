@@ -1,0 +1,24 @@
+﻿@model VacinaMinhaDeCadaDia.ViewModel.VacinaViewModel
+@{
+    ViewData["Title"] = "Cadastro";
+}
+<h2>Cadastro</h2>
+@using (@Html.BeginForm("Cadastrar", "Vacina", FormMethod.Post))
+{
+    <div class="widget-inner">
+
+        <div class="control-group">
+            <label for="Nome">Nome:</label>
+            @Html.TextBoxFor(x => x.Nome, new { Id = "Nome" })
+            @Html.ValidationMessageFor(x => x.Nome)
+        </div>
+
+        <div class="control-group">
+            <label for="CriadaEm">Criada em:</label>
+            @Html.TextBoxFor(x => x.CriadaEm, new { Id = "CriadaEm" })
+            @Html.ValidationMessageFor(x => x.CriadaEm)
+        </div>
+
+        <input type="submit" value="Cadastrar">
+    </div>
+}
