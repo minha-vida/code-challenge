@@ -13,3 +13,18 @@ D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\n
 D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.AssemblyInfo.cs
 D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.dll
 D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.pdb
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.deps.json
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.runtimeconfig.json
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.runtimeconfig.dev.json
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.dll
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.pdb
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.dll
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.dll
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.pdb
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.pdb
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.csprojResolveAssemblyReference.cache
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.csproj.CoreCompileInputs.cache
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.AssemblyInfoInputs.cache
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.AssemblyInfo.cs
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.dll
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.pdb

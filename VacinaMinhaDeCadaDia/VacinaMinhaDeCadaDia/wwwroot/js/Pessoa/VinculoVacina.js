@@ -1,28 +1,47 @@
-﻿(function ($, window, ui) {
+(function ($, window, ui) {
     "use strict";
 
     var $ui = $(ui);
         
     $ui
-        .bind(ui.eventos.obterPessoas, function () {
-            //var filtros = ui.recuperarFiltros();
-
+        .bind(ui.eventos.obterVacinasPessoa, function (e,data) {
             $.ajax({
                 dataType: "JSON",
-                url: "/Pessoa/ObterPessoas",
+                url: "/Pessoa/ObterVinculosVacina",
                 type: "GET",
-                //data: { filtros: JSON.stringify(filtros) },
+                data: { idPessoa: data},
                 success: function (dados) {
-                    ui.carregarListagem(dados);
+                    ui.carregarListagemVinculos(dados);
                 }
             });
         })
-        .bind(ui.eventos.ExcluirPessoa, function (e, data) {
+        .bind(ui.eventos.obterVacinas, function () {
             $.ajax({
-                url: "/Pessoa/ExcluirPessoa",
+                dataType: "JSON",
+                url: "/Vacina/ObterVacinas",
+                type: "GET",
+                success: function (dados) {
+                    ui.carregarListagemVacinas(dados);
+                }
+            });
+        })
+        .bind(ui.eventos.vincularVacina, function (e, data) {
+            $.ajax({
+                dataType: "JSON",
+                url: "/Pessoa/VincularVacinas",
+                type: "POST",
+                data: { idPessoa: data.idPessoa, idVacina: data.idVacina, dataDeAplicacao: data.dataDeAplicacao },
+                success: function (dados) {
+                    $ui.trigger(ui.eventos.obterVacinasPessoa, settings.idPessoa);
+                }
+            });
+        })
+        .bind(ui.eventos.excluirVacinaPessoa, function (e, data) {
+            $.ajax({
+                url: "/Pessoa/ExcluirVinculoVacina",
                 data: {id : data},
                 success: function () {
-                    $ui.trigger(ui.eventos.obterPessoas);
+                    $ui.trigger(ui.eventos.obterVacinasPessoa, settings.idPessoa);
                 }
             });
         });

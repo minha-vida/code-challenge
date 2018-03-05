@@ -1,4 +1,4 @@
-﻿(function ($, window, container) {
+(function ($, window, container) {
     "use strict";
 
     var $container = $(container),
@@ -13,35 +13,27 @@
             $ui = $(this);
 
             $ui.trigger(ui.eventos.obterPessoas);
-            ui.addEvents();
+            ui.addEvents();            
         },
         addEvents: function () {
             $container
-                .on("click", "#limpar-filtros", function (e) {
-                    ui.limparCampos();
-
-                    e.preventDefault();
-                    e.stopPropagation();
-                })
                 .on("click", '#Excluir', function () {
-                    $ui.trigger(ui.eventos.ExcluirPessoa, $(this).data("id"));
-                })
-                .on("click", "#toggle-busca", function (e) {
-                    ui.limparCampos();
-                })
-                .on("click", "#buscar-grupos", function (e) {
-                    $ui.trigger(ui.eventos.obterPessoas);
+                    var id = $(this).attr('data-id');
 
-                    e.preventDefault();
-                    e.stopPropagation();
+                    $("#modal-excluir").modal('show');
+
+                    $("#modal-btn-sim").attr('data-id', id);
+                })
+                .on("click", "#modal-btn-sim", function () {
+                    var id = $(this).attr('data-id');
+
+                    $ui.trigger(ui.eventos.ExcluirPessoa, id);
+
+                    $("#modal-excluir").modal('hide');
+                })
+                .on("click", "#modal-btn-nao", function () {
+                    $("#modal-excluir").modal('hide');
                 });
-        },
-        recuperarFiltros: function () {
-            var filtros = {
-                PalavraChave: $("#palavra-chave").val()
-            };
-
-            return filtros;
         },
         carregarListagem: function (dados) {
             if (dados.length > 0) {
@@ -53,9 +45,6 @@
                     $("#sem-resultado-template").render()
                 );
             }
-        },
-        limparCampos: function () {
-            $("#palavra-chave").val("");
         }
     };
 

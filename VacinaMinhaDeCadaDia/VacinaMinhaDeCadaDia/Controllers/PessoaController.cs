@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using VacinaMinhaDeCadaDia.ViewModel;
 using VacinaMinhaDeCadaDia.Data;
 using VacinaMinhaDeCadaDia.Domain.Entidades;
+using Microsoft.EntityFrameworkCore;
 
 namespace VacinaMinhaDeCadaDia.Controllers
 {
@@ -51,24 +52,24 @@ namespace VacinaMinhaDeCadaDia.Controllers
         }
 
         [HttpGet]
-        public IActionResult VincularVacinas(int idPessoa)
+        public IActionResult VincularVacinas(int id)
         {
             var model = new VinculoVacinaViewModel()
             {
-                idPessoa = idPessoa
+                idPessoa = id
             };
 
             return View("VinculoVacina", model);
         }
 
         [HttpGet]
-        public List<PessoaVacina> ObterVinculosVacina(int idPessoa)
+        public JsonResult ObterVinculosVacina(int idPessoa)
         {
-            var pessoa = _context.Pessoa.Find(idPessoa);
+            var pessoaVacina = _context.PessoaVacina.Where(pv => pv.Pessoa.Id == idPessoa).Include(pv => pv.Vacina).ToList();
 
-            var pessoaVacina = pessoa.Vacinas;
+            var JsonPessoaVacina = pessoaVacina.Select(pv => new VinculoVacinaViewModel() { Id = pv.Id, Nome = _context.Vacina.Find(pv.Vacina.Id).Nome, DataDeAplicacao = pv.DataDeAplicacao.ToString("dd/MM/yyy") });
 
-            return pessoaVacina;
+            return Json(JsonPessoaVacina);
         }
 
         [HttpPost]
@@ -87,6 +88,29 @@ namespace VacinaMinhaDeCadaDia.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public JsonResult VincularVacinas(int idPessoa, int idVacina, string dataDeAplicacao)
+        {
+            var pessoa = _context.Pessoa.Find(idPessoa);
+
+            var vacina = _context.Vacina.Find(idVacina);
+
+            var culture = new System.Globalization.CultureInfo("pt-br", true);
+
+            var pessoaVacina = new PessoaVacina
+            {
+                DataDeAplicacao = DateTime.Parse(dataDeAplicacao, culture, System.Globalization.DateTimeStyles.AssumeLocal),
+                Pessoa = pessoa,
+                Vacina = vacina
+            };
+
+            pessoa.Vacinas.Add(pessoaVacina);
+
+            _context.SaveChanges();
+
+            return Json(new { success= "true" });
         }
 
         private void CadastrarPessoa(PessoaViewModel model)
@@ -117,7 +141,20 @@ namespace VacinaMinhaDeCadaDia.Controllers
         {
             var pessoa = _context.Pessoa.Find(id);
 
-            _context.Remove(pessoa);
+            var pessoaVacina = _context.PessoaVacina.Include(x => x.Pessoa).Where(pv => pv.Pessoa == pessoa).ToList();
+
+            _context.PessoaVacina.RemoveRange(pessoaVacina);
+
+            _context.Pessoa.Remove(pessoa);
+
+            _context.SaveChanges();
+        }
+
+        public void ExcluirVinculoVacina(int id)
+        {
+            var pessoaVacina = _context.PessoaVacina.Find(id);
+
+            _context.PessoaVacina.Remove(pessoaVacina);
 
             _context.SaveChanges();
         }

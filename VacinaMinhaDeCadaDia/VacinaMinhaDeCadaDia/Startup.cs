@@ -24,7 +24,7 @@ namespace VacinaMinhaDeCadaDia
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<PessoaContext>(opcoes => opcoes.UseSqlServer("Server = 192.168.0.10,56772; DataBase = TesteVacina; Trusted_Connection = True; "));
+            services.AddDbContext<PessoaContext>(opcoes => opcoes.UseSqlServer("Server = DESKTOP-2NP15GC\\SQLEXPRESS; DataBase = TesteVacina; Trusted_Connection = True; "));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +46,7 @@ namespace VacinaMinhaDeCadaDia
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Pessoa}/{action=Index}/{id?}");
             });
         }
     }

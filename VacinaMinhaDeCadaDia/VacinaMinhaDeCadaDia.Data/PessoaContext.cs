@@ -11,10 +11,5 @@ namespace VacinaMinhaDeCadaDia.Data
         public DbSet<Pessoa> Pessoa { get; set; }
         public DbSet<Vacina> Vacina { get; set; }
         public DbSet<PessoaVacina> PessoaVacina { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<PessoaVacina>().HasKey(s => new { s.IdPessoa, s.IdVacina });
-        }
     }
 }

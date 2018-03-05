@@ -7,3 +7,11 @@ D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\obj\
 D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\obj\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.AssemblyInfo.cs
 D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\obj\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.dll
 D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\obj\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.pdb
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\bin\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.deps.json
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\bin\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.dll
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\bin\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.pdb
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\obj\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.csproj.CoreCompileInputs.cache
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\obj\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.AssemblyInfoInputs.cache
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\obj\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.AssemblyInfo.cs
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\obj\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.dll
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Domain\obj\Release\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.pdb

@@ -11,9 +11,10 @@ using VacinaMinhaDeCadaDia.Data;
 namespace VacinaMinhaDeCadaDia.Data.Migrations
 {
     [DbContext(typeof(PessoaContext))]
-    partial class UsuarioContextModelSnapshot : ModelSnapshot
+    [Migration("20180303215144_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,9 +39,8 @@ namespace VacinaMinhaDeCadaDia.Data.Migrations
 
             modelBuilder.Entity("VacinaMinhaDeCadaDia.Domain.Entidades.PessoaVacina", b =>
                 {
-                    b.Property<int>("IdPessoa");
-
-                    b.Property<int>("IdVacina");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DataDeAplicacao");
 
@@ -48,7 +48,7 @@ namespace VacinaMinhaDeCadaDia.Data.Migrations
 
                     b.Property<int?>("VacinaId");
 
-                    b.HasKey("IdPessoa", "IdVacina");
+                    b.HasKey("Id");
 
                     b.HasIndex("PessoaId");
 

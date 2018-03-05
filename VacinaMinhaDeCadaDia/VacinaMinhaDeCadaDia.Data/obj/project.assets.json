@@ -3347,24 +3347,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lucas\\.nuget\\packages\\": {},
+    "C:\\Users\\Flavia\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "D:\\Projects\\code-challenge\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Data\\VacinaMinhaDeCadaDia.Data.csproj",
+      "projectUniqueName": "C:\\teste do boy\\code-challenge-master\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Data\\VacinaMinhaDeCadaDia.Data.csproj",
       "projectName": "VacinaMinhaDeCadaDia.Data",
-      "projectPath": "D:\\Projects\\code-challenge\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Data\\VacinaMinhaDeCadaDia.Data.csproj",
-      "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\code-challenge\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Data\\obj\\",
+      "projectPath": "C:\\teste do boy\\code-challenge-master\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Data\\VacinaMinhaDeCadaDia.Data.csproj",
+      "packagesPath": "C:\\Users\\Flavia\\.nuget\\packages\\",
+      "outputPath": "C:\\teste do boy\\code-challenge-master\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Flavia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -3376,8 +3382,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\Projects\\code-challenge\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Domain\\VacinaMinhaDeCadaDia.Domain.csproj": {
-              "projectPath": "D:\\Projects\\code-challenge\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Domain\\VacinaMinhaDeCadaDia.Domain.csproj"
+            "C:\\teste do boy\\code-challenge-master\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Domain\\VacinaMinhaDeCadaDia.Domain.csproj": {
+              "projectPath": "C:\\teste do boy\\code-challenge-master\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Domain\\VacinaMinhaDeCadaDia.Domain.csproj"
             }
           }
         }

@@ -10,6 +10,8 @@ namespace VacinaMinhaDeCadaDia.ViewModel
     {
         public int idPessoa { get; set; }
 
-        public List<int> IdsVacinas { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string DataDeAplicacao { get; set; }
     }
 }

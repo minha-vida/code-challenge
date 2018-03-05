@@ -26,6 +26,42 @@
     margin: 15px;
 }
 
+
+.table-pessoa,
+.table-vacina,
+.table-vinculo {
+    overflow-x: visible;
+}
+
+
+.field-validation-error {
+    color: #a94442;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.input-validation-error {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.input-validation-error:focus {
+    border-color: #843534;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+}
+
+.dropdown-menu .glyphicon {
+    padding-right: 10px;
+}
+
+.img-pessoa {
+    width: 140px;
+    height: 140px;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

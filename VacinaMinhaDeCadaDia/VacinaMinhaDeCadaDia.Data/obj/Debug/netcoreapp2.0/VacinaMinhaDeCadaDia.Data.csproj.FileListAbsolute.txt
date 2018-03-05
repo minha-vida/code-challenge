@@ -9,3 +9,14 @@ D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\bin\De
 D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.pdb
 D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.dll
 D:\Projects\code-challenge\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.pdb
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.deps.json
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.dll
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.pdb
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.dll
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\bin\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Domain.pdb
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.csprojResolveAssemblyReference.cache
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.csproj.CoreCompileInputs.cache
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.AssemblyInfoInputs.cache
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.AssemblyInfo.cs
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.dll
+C:\teste do boy\code-challenge-master\VacinaMinhaDeCadaDia\VacinaMinhaDeCadaDia.Data\obj\Debug\netcoreapp2.0\VacinaMinhaDeCadaDia.Data.pdb

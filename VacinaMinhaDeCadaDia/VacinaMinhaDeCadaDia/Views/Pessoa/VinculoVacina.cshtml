@@ -4,17 +4,18 @@
     ViewData["Title"] = "VinculoVacina";
 }
 
-<h2>VinculoVacina</h2>
+<h2>Vínculo de vacina</h2>
+<hr />
 
-<h4>Abaixo se encontram as vacinas atuais do Usuario:</h4>
+<h4>Abaixo se encontram as vacinas vinculadas ao usuário:</h4>
 
 <div class="wrapper">
-    <div class="table-responsive">
-        <table class="table" id="listagem-vacinas-antigas">
+    <div class="table-responsive table-vinculo">
+        <table class="table table-striped" id="listagem-vacinas-antigas">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>AplicadaEm</th>
+                    <th>Aplicada em</th>
                     <th class="col-xs-1">Ações</th>
                 </tr>
             </thead>
@@ -23,18 +24,21 @@
     </div>
 </div>
 
-<h4>Alguma vacina nova? vincule abaixo</h4>
+<h4>Alguma vacina nova? Vincule abaixo</h4>
 
-<label for="DataDeAplicacao">Data de Aplicação:</label>
-<input type="text" id="DataDeAplicacao"/>
+<div class="form-group col-xs-12">
+    <label for="DataDeAplicacao">*Data de Aplicação:</label>
+    <input type="text" id="DataDeAplicacao" class="form-control"/>
+</div>
 
-<div class="wrapper">
-    <div class="table-responsive">
+
+<div class="wrapper col-xs-12">
+    <div class="table-responsive table-vinculo">
         <table class="table" id="listagem-vacinas-novas">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>CriadaEm</th>
+                    <th>Criada em</th>
                     <th class="col-xs-1">Ações</th>
                 </tr>
             </thead>
@@ -43,29 +47,52 @@
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-excluir">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modal-titulo">Deseja mesmo excluir?</h4>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button type="button" class="btn btn-success" id="modal-btn-sim" data-id="">Sim</button>
+                    <button type="button" class="btn btn-danger" id="modal-btn-nao">Não</button>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
 
 <script type="text/javascript">
         var settings = {
-            idPessoa = @Model.idPessoa
+            idPessoa: @Model.idPessoa
         };
 </script>
 
-<script src="@Url.Content("~/js/Vacina/Vacina-ui.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/js/Vacina/Vacina.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/Pessoa/VinculoVacina-ui.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/js/Pessoa/VinculoVacina.js")" type="text/javascript"></script>
+
+<script>
+    var selector = document.getElementById("DataDeAplicacao");
+    var im = new Inputmask({ alias: "datetime", inputFormat: "dd/mm/yyyy", placeholder: "dd/mm/aaaa" });
+    im.mask(selector);
+</script>
 
 <script type="text/x-jsrender" id="listagem-template-vacinas-antigas">
     <tr>
         <td>{{:nome}}</td>
-        <td>{{:aplicadaEm}}</td>
+        <td>{{:dataDeAplicacao}}</td>
         <td>
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     Ações <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#" id="Excluir" data-id="{{:id}}">Excluir</a></li>
+                    <li><a href="#" id="Excluir" data-id="{{:id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Excluir</a></li>
                 </ul>
             </div>
         </td>
@@ -86,11 +113,11 @@
         <td>{{:criadaEm}}</td>
         <td>
             <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-primary acoes-Adicionar dropdown-toggle" data-toggle="dropdown" disabled="disabled">
                     Ações <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#" id="Excluir" data-id="{{:id}}">Excluir</a></li>
+                    <li><a href="#" id="Adicionar" data-id="{{:id}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Adicionar</a></li>
                 </ul>
             </div>
         </td>

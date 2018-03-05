@@ -4,9 +4,10 @@
 }
 
 <h2 class="title">Pessoas</h2>
+<hr />
 <div class="wrapper">
-    <div class="table-responsive">
-        <table class="table" id="listagem-pessoas">
+    <div class="table-pessoa table-responsive">
+        <table class="table table-striped" id="listagem-pessoas">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -19,7 +20,28 @@
     </div>
 </div>
 
-<a href="@Url.Action("Cadastrar","Pessoa")">Cadastro</a>
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-excluir">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modal-titulo">Deseja mesmo excluir?</h4>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button type="button" class="btn btn-success" id="modal-btn-sim" data-id="">Sim</button>
+                    <button type="button" class="btn btn-danger" id="modal-btn-nao">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 text-center">
+    <a class="btn btn-primary btn-lg" href="@Url.Action("Cadastrar","Pessoa")">Cadastro</a>
+</div>
+
+
 
 @section Scripts {
     <script src="@Url.Content("~/js/Pessoa/Pessoa-ui.js")" type="text/javascript"></script>
@@ -35,8 +57,9 @@
                         Ações <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu pull-right" role="menu">
-                        <li><a href="@(Url.Action("Cadastrar", "Pessoa"))/{{:id}}">Editar</a></li>
-                        <li><a href="#" id="Excluir" data-id="{{:id}}">Excluir</a></li>
+                        <li><a href="@(Url.Action("Cadastrar", "Pessoa"))/{{:id}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Editar</a></li>
+                        <li><a href="#" id="Excluir" data-id="{{:id}}" data-toggle="confirmation"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Excluir</a></li>
+                        <li><a href="@(Url.Action("VincularVacinas", "Pessoa"))/{{:id}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Vincular vacinas</a></li>
                     </ul>
                 </div>
             </td>

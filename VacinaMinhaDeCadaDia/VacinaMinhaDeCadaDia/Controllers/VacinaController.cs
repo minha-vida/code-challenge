@@ -24,9 +24,17 @@ namespace VacinaMinhaDeCadaDia.Controllers
         }
 
         [HttpGet]
-        public List<Vacina> ObterVacinas()
+        public JsonResult ObterVacinas()
         {
-            return _context.Vacina.ToList();
+            var model = _context.Vacina.Select(x => new ListagemVacinaViewModel()
+            {
+                Id = x.Id,
+                Nome = x.Nome,
+                AlteradaEm = x.AlteradaEm == DateTime.MinValue ? "--" : x.AlteradaEm.ToString("dd/MM/yyyy"),
+                CriadaEm = x.CriadaEm.ToString("dd/MM/yyyy")
+            });
+
+            return Json(model);
         }
 
         [HttpGet]
