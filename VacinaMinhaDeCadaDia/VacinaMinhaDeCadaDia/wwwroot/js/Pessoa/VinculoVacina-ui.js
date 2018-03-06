@@ -46,9 +46,6 @@
                 .on("click", "#modal-btn-nao", function () {
                     $("#modal-excluir").modal('hide');
                 })
-                .on("click", "#toggle-busca", function (e) {
-                    ui.limparCampos();
-                })
                 .on("click", "#Adicionar", function (e) {
                     var dataDeAplicacao = $("#DataDeAplicacao").val();
 
