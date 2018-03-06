@@ -18,6 +18,7 @@ namespace VacinaMinhaDeCadaDia.ViewModel
         public int Idade { get; set; }
 
         [Required(ErrorMessage = "Foto obrigatoria")]
+        [Url(ErrorMessage = "Foto deve ser uma url da imagem")]
         public string Foto { get; set; }
     }
 }
