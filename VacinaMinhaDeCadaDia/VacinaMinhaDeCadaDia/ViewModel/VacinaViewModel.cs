@@ -14,6 +14,6 @@ namespace VacinaMinhaDeCadaDia.ViewModel
         public string Nome { get; set; }        
 
         [Required(ErrorMessage = "Campo Criada em Obrigatorio")]
-        public DateTime CriadaEm { get; set; }
+        public string CriadaEm { get; set; }
     }
 }

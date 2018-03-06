@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using VacinaMinhaDeCadaDia.Data;
 using VacinaMinhaDeCadaDia.Domain.Entidades;
 using VacinaMinhaDeCadaDia.ViewModel;
+using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 
 namespace VacinaMinhaDeCadaDia.Controllers
 {
@@ -48,7 +50,7 @@ namespace VacinaMinhaDeCadaDia.Controllers
                 {
                     Id = vacina.Id,
                     Nome = vacina.Nome,
-                    CriadaEm = vacina.CriadaEm
+                    CriadaEm = vacina.CriadaEm.ToString("dd/MM/yyyy")
                 };
 
                 return View("Cadastro", model);
@@ -77,10 +79,12 @@ namespace VacinaMinhaDeCadaDia.Controllers
 
         private void CadastrarVacina(VacinaViewModel model)
         {
+            var culture = new System.Globalization.CultureInfo("pt-br", true);
+
             var vacina = new Vacina()
             {
                 Nome = model.Nome,
-                CriadaEm = model.CriadaEm
+                CriadaEm = DateTime.Parse(model.CriadaEm, culture, System.Globalization.DateTimeStyles.AssumeLocal)
             };
 
             _context.Vacina.Add(vacina);
@@ -91,16 +95,23 @@ namespace VacinaMinhaDeCadaDia.Controllers
         {
             var vacina = _context.Vacina.Find(model.Id);
 
+            var culture = new System.Globalization.CultureInfo("pt-br", true);
+
             vacina.Nome = model.Nome;
-            vacina.CriadaEm = model.CriadaEm;
+            vacina.CriadaEm = DateTime.Parse(model.CriadaEm, culture, System.Globalization.DateTimeStyles.AssumeLocal);
+
             vacina.AlteradaEm = DateTime.Now;
 
             _context.SaveChanges();
         }
 
         public void ExcluirVacina(int id)
-        {
+        {        
             var vacina = _context.Vacina.Find(id);
+
+            var pessoaVacina = _context.PessoaVacina.Include(x => x.Pessoa).Where(pv => pv.Vacina == vacina).ToList();
+
+            _context.PessoaVacina.RemoveRange(pessoaVacina);
 
             _context.Remove(vacina);
 

@@ -669,9 +669,6 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
       "projectUniqueName": "D:\\Projects\\code-challenge\\VacinaMinhaDeCadaDia\\VacinaMinhaDeCadaDia.Domain\\VacinaMinhaDeCadaDia.Domain.csproj",
       "projectName": "VacinaMinhaDeCadaDia.Domain",
@@ -710,7 +707,7 @@
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           }
         },

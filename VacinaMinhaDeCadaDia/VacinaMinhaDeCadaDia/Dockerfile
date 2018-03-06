@@ -14,3 +14,5 @@ WORKDIR /app
 EXPOSE 5000/tcp
 COPY --from=build-env /app/publish .
 ENTRYPOINT ["dotnet", "VacinaMinhaDeCadaDia.dll"]
+ENV TZ=Brazil/East
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
