@@ -15,9 +15,31 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/Validations.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/Validations.min.js" asp-append-version="true"></script>
+    </environment>
 </head>
 <body>
-    <nav class="navbar navbar-fixed-top">
+    <nav class="navbar navbar-fixed-top" style="background-color: #c7d7aa;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,43 +58,30 @@
                         <li>@Html.ActionLink("Login", "Login", "Usuario")</li>
                     }
                     else
-                    { 
+                    {
                         <li><a href="/Usuario/Visualizar">@User.Identity.Name</a></li>
                         <li>@Html.ActionLink("Logout", "Logout", "Usuario")</li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-left">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Minha Carteira", "Index", "Carteira")</li>
                     }
                 </ul>
             </div>
         </div>
     </nav>
+    @RenderSection("Scripts", required: false)
     <div class="container body-content">
         @RenderBody()
+        <br />
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Carteira de Vacinação Online - With &hearts; for u</p>
         </footer>
     </div>
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
 
-    @RenderSection("Scripts", required: false)
 </body>
 </html>

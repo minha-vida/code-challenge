@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -32,6 +33,15 @@ namespace CC_CarteiraVacinacao
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            RequestLocalizationOptions ro = new RequestLocalizationOptions
+            {
+                SupportedCultures = new List<CultureInfo>() { new CultureInfo("pt-br") }
+            };
+
+            app.UseRequestLocalization(ro);
+
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -53,8 +63,6 @@ namespace CC_CarteiraVacinacao
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            
         }
     }
 }

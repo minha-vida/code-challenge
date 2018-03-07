@@ -93,10 +93,20 @@ namespace CC_CarteiraVacinacao.Controllers
 
         [Authorize]
         [ValidateAntiForgeryToken]
+        public IActionResult Editar()
+        {
+            UsuarioModel user = new UsuarioModel();
+            user = user.SearchWithoutPass(User.FindFirstValue(ClaimTypes.Email));
+            return View(user);
+        }
+
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult EditUser(UsuarioModel user)
         {
             UsuarioModel userFull = new UsuarioModel();
-            userFull.SearchWithoutPass(User.FindFirstValue(ClaimTypes.Name));
+            userFull = userFull.SearchWithoutPass(User.FindFirstValue(ClaimTypes.Email));
 
             user.Id = userFull.Id;
             user.Password = userFull.Password;
@@ -104,7 +114,13 @@ namespace CC_CarteiraVacinacao.Controllers
 
             user.Update();
 
-            return View(user);
+            return RedirectToAction("Visualizar");
+        }
+
+        [Authorize]
+        public IActionResult DeactivateUser()
+        {
+            return View();
         }
     }
 }

@@ -33,3 +33,16 @@
         display: none;
     }
 }
+
+.errorlabel {
+    color: #ec7e7e;
+}
+
+.inverseTextColor{
+    color: #fff;
+}
+
+.inverseTextColor a {
+    color: #fff;
+    text-decoration: none;
+}

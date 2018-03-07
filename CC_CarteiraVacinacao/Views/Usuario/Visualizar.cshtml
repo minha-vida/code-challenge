@@ -3,25 +3,37 @@
     ViewData["Title"] = "Visualizar";
 }
 
-<h2>Visualizar</h2>
-<div class="col-xs-12 col-md-6">
-
-</div>
-<div class="col-xs-12 col-md-6">
-    <form method="post" class="form-group" action="/Usuario/EditUser/">
+<h3 class="">Dados Cadastrais</h3>
+<br />
+<div class="col-md-12">
+    <div class="col-xs-12 col-md-4">
+        <img src="@Model.ProfilePhoto" srcset="https://image.flaticon.com/icons/svg/16/16480.svg" width="180" height="180" id="profile_img" class="img-responsive img-circle" />
+        <br />
+    </div>
+    <div class="col-xs-12 col-md-8">
+        <br />
         <label for="EmailUser">E-Mail:</label>
-        <input type="text" name="Email" id="EmailUser" value="@Model.Email" class="form-control" />
+        <span name="Email" id="EmailUser">@Model.Email</span>
         <br />
         <label for="NameUser">Nome:</label>
-        <input type="text" name="Name" id="NameUser" value="@Model.Name" class="form-control" />
+        <span name="Name" id="NameUser">@Model.Name</span>
         <br />
-        <label for="BirthUser">Data de Nascimento</label>
-        <input type="text" name="Age" id="BirthUser" value="@Model.DateOfBirth.ToString("dd/MM/yyyy")" class="form-control" />
+        <label for="BirthUser">Data de Nascimento:</label>
+        <span name="DateOfBirth" id="BirthUser">@Model.DateOfBirth.ToString("dd/MM/yyyy") - @Model.DateOfBirth.Year - @DateTime.Now.Year Anos.</span>
         <br />
-        <label for="PhotoUser">Foto de Perfil:</label>
-        <input type="text" name="ProfilePhoto" id="PhotoUser" value="@Model.ProfilePhoto" class="form-control" />
+        <label for="PassUser">Senha:</label>
+        <label name="Pass" id="PassUser">********</label>
         <br />
-        <input type="submit" class="btn btn-default" id="Update_Sent" value="Enviar Alterações" /> 
-        <input type="button" class="btn btn-danger" id="Update_Cancel" value="Cancelar" />
-    </form>
+        <a href="/Usuario/Editar/" class="btn btn-primary" id="Update_Sent">Editar Usuário</a>
+        <a href="/Usuario/Desativar/" class="btn btn-danger" id="Deactivate_User">Desativar Usuário</a>
+    </div>
 </div>
+
+<div>
+
+</div>
+<script type="text/javascript">
+    $("#Deactivate_User").on("click", function (){ 
+        
+    });
+</script>

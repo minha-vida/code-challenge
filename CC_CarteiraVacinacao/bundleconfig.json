@@ -20,5 +20,31 @@
     },
     // Optionally generate .map file
     "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/Validations.min.js",
+    "inputFiles": [
+      "wwwroot/js/Validations.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/Vaccines.min.js",
+    "inputFiles": [
+      "wwwroot/js/Vaccines.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
   }
 ]
