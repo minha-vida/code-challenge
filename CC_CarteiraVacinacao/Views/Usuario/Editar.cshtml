@@ -62,10 +62,10 @@
         ManageErrors(result, document.getElementById("BirthGroup"), ".errorlabel", "Data Inválida");
     });
 
-    $("#SendUser").on("click", function (data) {
+    $("#Update_Sent").on("click", function (data) {
         var results = false;
 
-        if ($(".errorlabel").text() !== "")
+        if ($(".errorlabel").html() !== "")
             return false;
 
         $(".required").each(function (index) {

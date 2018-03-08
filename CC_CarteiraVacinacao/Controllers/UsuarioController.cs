@@ -157,9 +157,19 @@ namespace CC_CarteiraVacinacao.Controllers
             UsuarioModel userFull = new UsuarioModel();
             userFull = userFull.SearchWithoutPass(User.FindFirstValue(ClaimTypes.Email));
 
-            if (!EmailExists(user.Email))
+            bool emailExists = false;
+
+            if (user.Email != userFull.Email)
+            {
+                emailExists = EmailExists(user.Email);
+                if (!emailExists)
+                    Logout();
+            }
+
+            if (!emailExists)
             {
                 user.Id = userFull.Id;
+                user.IsUserActive = true;
                 user.Password = userFull.Password;
                 user.Vaccines = userFull.Vaccines;
 
