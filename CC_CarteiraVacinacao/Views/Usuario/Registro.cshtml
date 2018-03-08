@@ -49,20 +49,20 @@
             result = ValidateDate(data.target.value);
 
         ManageErrors(result, document.getElementById("BirthGroup"));
-        if (result)
-            $("#BirthGroup").find("errorlabel").text("Data Inválida");
+        if (!result)
+            $("#BirthGroup").find(".errorlabel").text("Data Inválida");
         else
-            $("#BirthGroup").find("errorlabel").text("");
+            $("#BirthGroup").find(".errorlabel").text("");
     });
 
-    $("#PassUserCheck").on("keydown", function (data) {
+    $("#PassUserCheck").on("keyup", function (data) {
         var result = CheckEq(data.target.value, document.getElementById("PassUser").value);
 
         ManageErrors(result, document.getElementById("PassGroup"));
-        if (result)
-            $("#PassGroup").find("errorlabel").text("Senhas não conferem");
+        if (!result)
+            $("#PassGroup").find(".errorlabel").text("Senhas não conferem");
         else
-            $("#PassGroup").find("errorlabel").text("");
+            $("#PassGroup").find(".errorlabel").text("");
     });
 
     $("#SendUser").on("click", function (data) {
@@ -73,8 +73,10 @@
                 results = false;
                 $(this).siblings(".errorlabel").html("Campo Requerido!");
             }
-            else
+            else {
                 $(this).siblings(".errorlabel").html("");
+                results = true;
+            }
         });
 
         if ($(".has-errors").length > 0)

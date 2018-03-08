@@ -7,7 +7,7 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -37,6 +37,7 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
         <script src="~/js/Validations.min.js" asp-append-version="true"></script>
     </environment>
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-fixed-top" style="background-color: #c7d7aa;">
@@ -48,25 +49,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Carteira de Vacinação Online</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand inverseTextColor">Carteira de Vacinação Online</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Registrar", "Registro", "Usuario")</li>
-                        <li>@Html.ActionLink("Login", "Login", "Usuario")</li>
+                        <li>@Html.ActionLink("Registrar", "Registro", "Usuario", null, new { Class = "inverseTextColor" })</li>
+                        <li>@Html.ActionLink("Login", "Login", "Usuario",null, new { Class = "inverseTextColor" })</li>
                     }
                     else
                     {
-                        <li><a href="/Usuario/Visualizar">@User.Identity.Name</a></li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Usuario")</li>
+                        <li><a href="/Usuario/Visualizar" class="inverseTextColor">@User.Identity.Name</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Usuario", null, new { Class = "inverseTextColor" })</li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-left">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Minha Carteira", "Index", "Carteira")</li>
+                        <li>@Html.ActionLink("Minha Carteira", "Index", "Carteira", null, new { Class = "inverseTextColor" })</li>
                     }
                 </ul>
             </div>

@@ -92,7 +92,6 @@ namespace CC_CarteiraVacinacao.Controllers
         }
 
         [Authorize]
-        [ValidateAntiForgeryToken]
         public IActionResult Editar()
         {
             UsuarioModel user = new UsuarioModel();

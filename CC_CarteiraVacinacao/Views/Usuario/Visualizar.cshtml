@@ -7,7 +7,7 @@
 <br />
 <div class="col-md-12">
     <div class="col-xs-12 col-md-4">
-        <img src="@Model.ProfilePhoto" srcset="https://image.flaticon.com/icons/svg/16/16480.svg" width="180" height="180" id="profile_img" class="img-responsive img-circle" />
+        <img src="@Model.ProfilePhoto" onerror="this.src='https://image.flaticon.com/icons/svg/16/16480.svg'" width="180" height="180" id="profile_img" class="img-responsive img-circle" />
         <br />
     </div>
     <div class="col-xs-12 col-md-8">
@@ -19,7 +19,7 @@
         <span name="Name" id="NameUser">@Model.Name</span>
         <br />
         <label for="BirthUser">Data de Nascimento:</label>
-        <span name="DateOfBirth" id="BirthUser">@Model.DateOfBirth.ToString("dd/MM/yyyy") - @Model.DateOfBirth.Year - @DateTime.Now.Year Anos.</span>
+        <span name="DateOfBirth" id="BirthUser">@Model.DateOfBirth.ToString("dd/MM/yyyy") - @(DateTime.Now.Year - Model.DateOfBirth.Year) Anos.</span>
         <br />
         <label for="PassUser">Senha:</label>
         <label name="Pass" id="PassUser">********</label>
