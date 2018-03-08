@@ -24,20 +24,19 @@
             <label class="errorlabel"></label>
             <br />
         </div>
-        <div class="col-md-12">
+        <div class="media">
             <label for="">Foto de Perfil:</label>
             <br />
-            <div class="col-xs-12 col-md-6">
-                <img src="@Model.ProfilePhoto" onerror="this.src='https://image.flaticon.com/icons/svg/16/16480.svg'" 
-                     width="100" height="100" id="profile_img" class="img-responsive img-circle" />
+            <div class="media-right img-small-size">
+                <img src="@Model.ProfilePhoto" onerror="this.src='https://image.flaticon.com/icons/svg/16/16480.svg'"
+                        id="profile_img" class="media-object" />
             </div>
-            <div class="col-xs-12 col-md-6">
-                <label for="PhotoUser">Link:</label>
+            <div class="media-body">
                 <br />
-                <input type="text" name="ProfilePhoto" id="PhotoUser" value="@Model.ProfilePhoto" class="form-control" />
+                &nbsp;<input type="text" name="ProfilePhoto" id="PhotoUser" value="@Model.ProfilePhoto" class="form-control" />
             </div>
-            <br />
         </div>
+        <br />
         <input type="submit" class="btn btn-default" id="Update_Sent" value="Enviar Alterações" />
     </form>
 </div>

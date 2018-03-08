@@ -10,12 +10,16 @@
         <form action="@Url.Action("ValidateLogin","Usuario")" method="post" class="form-group">
             @Html.AntiForgeryToken()
             <label for="Email_User">E-Mail: </label>
-            <input type="text" class="form-control" id="Email_User" name="email" value="" required />
+            <input type="text" class="form-control" id="Email_User" name="email" value="@ViewBag.LastMail" required />
             <label for="Pass_User">Password: </label>
             <input type="password" class="form-control" id="Pass_User" name="password" value="" required />
             @if (!string.IsNullOrEmpty(ViewBag.Error))
             {
                 <label class="errorlabel"> @ViewBag.Error</label>
+                @if (ViewBag.Deactivate != null)
+                {
+                <span>Quer reativar? Clique <a href="@Url.Action("Reativar","Usuario")?email=@ViewBag.LastMail">Aqui</a></span>
+                }
             }
             <br />
             <input type="submit" class="btn btn-default" id="SendAway" value="Login" />

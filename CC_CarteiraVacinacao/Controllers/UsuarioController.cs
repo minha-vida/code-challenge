@@ -39,6 +39,8 @@ namespace CC_CarteiraVacinacao.Controllers
                     Password = password
                 };
 
+                ViewBag.LastMail = email;
+
                 user = user.Search();
 
                 if (user != null)
@@ -61,7 +63,8 @@ namespace CC_CarteiraVacinacao.Controllers
                     }
                     else
                     {
-                        ViewBag.Error = "Usuário Desativado :/";
+                        ViewBag.Error = string.Format("Usuário Desativado :/");
+                        ViewBag.Deactivate = true;
                         return View("Login");
                     }
                 }
@@ -75,6 +78,21 @@ namespace CC_CarteiraVacinacao.Controllers
         {
             await HttpContext.SignOutAsync();
             return Redirect("/");
+        }
+
+        [HttpGet]
+        public IActionResult Reativar(string email)
+        {
+            if (!string.IsNullOrEmpty(email))
+            {
+                UsuarioModel user = new UsuarioModel();
+                user = user.SearchWithoutPass(email);
+
+                user.IsUserActive = true;
+                user.Update();
+            }
+            ViewBag.Error = "Usuario Reativado ;)";
+            return View("Login");
         }
 
         //Criacao do usuario
