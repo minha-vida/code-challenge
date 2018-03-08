@@ -7,6 +7,7 @@
 </environment>
 
 <h3>Minha Carteira</h3>
+<input type="hidden" id="YearBirth" value="@ViewBag.Birth" />
 <div class="col-md-12">
     <div class="well">
         <input type="button" class="btn btn-primary" id="Add_Vacc" data-toggle="modal" data-target="#ModalVacina" value="Adicionar Vacina" />
@@ -26,14 +27,20 @@
             </div>
             <div class="modal-body">
                 <br />
-                <label for="">Vacina:</label>
-                <input type="text" id="Vacc_Name" class="form-control" />
-                <input type="hidden" id="Vacc_Old_Name" value="" />
-                <br />
-                <label for="">Aplicada em:</label>
-                <input type="text" id="Vacc_Applied" class="form-control" />
-                <input type="hidden" id="Vacc_Applied_Old" value="" />
-                <br />
+                <div class="form-group" id="VaccNameGroup">
+                    <label for="">Vacina:</label>
+                    <input type="text" id="Vacc_Name" class="form-control required" maxlength="150" />
+                    <label id="errorVaccName" class="errorlabel"></label>
+                    <input type="hidden" id="Vacc_Old_Name" value="" />
+                    <br />
+                </div>
+                <div class="form-group" id="VaccDateGroup">
+                    <label for="">Aplicada em:</label>
+                    <input type="text" id="Vacc_Applied" class="form-control required" maxlength="10" />
+                    <label id="errorAppDate" class="errorlabel"></label>
+                    <input type="hidden" id="Vacc_Applied_Old" value="" />
+                    <br />
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -45,6 +52,21 @@
 <script type="text/javascript">
     $(document).ready(function () {
         JohnnyGoAjaxStyle("", "@Url.Action("VisualizarVacinas", "Carteira")", LoadVaccines, Failure);
+    });
+
+    $("#Vacc_Applied").on("keyup", function (data) { 
+        var result;
+        AdjustDate(data);
+        result = ValidateDate(data.target.value);
+
+        if (!result)
+            errorText = "Data de Vacina Inválida";
+        else if (ValidateDate(data.target.value, document.getElementById("YearBirth").value)) {
+            result = false;
+            errorText = "Você não pode exatamente tomar uma vacina sem estar vivo...";
+        }
+
+        ManageErrors(result, document.getElementById("VaccDateGroup"), ".errorlabel", errorText);
     });
 
     $("#ModalVacina").on("show.bs.modal", function (event) { 
@@ -75,56 +97,20 @@
         var appDate = document.getElementById("Vacc_Applied").value;
         var nameOld = document.getElementById("Vacc_Old_Name").value;
         var appDateOld = document.getElementById("Vacc_Applied_Old").value;
+        var nameIsEmpty = name.trim() === "";
 
-        if (nameOld !== "" || appDateOld !== "") {
-            if (nameOld !== name || appDateOld !== appDate) {
-                JohnnyGoAjaxStyle(SetVaccineObjectEdit(nameOld, appDateOld, name, appDate), "@Url.Action("AlterarVacina", "Carteira")", UpdateVaccine, Failure);
+        ManageErrors(!nameIsEmpty, document.getElementById("VaccNameGroup"), ".errorlabel", "Campo Requerido!");
+
+        if (ValidateDate(appDate) && !nameIsEmpty) {
+            if (nameOld !== "" || appDateOld !== "") {
+                if (nameOld !== name || appDateOld !== appDate) {
+                    JohnnyGoAjaxStyle(SetVaccineObjectEdit(nameOld, appDateOld, name, appDate), "@Url.Action("AlterarVacina", "Carteira")", UpdateVaccine, Failure);
+                }
             }
+            else
+                JohnnyGoAjaxStyle(SetVaccineObject(name, appDate), "@Url.Action("CriarVacina", "Carteira")", AddSuccess, Failure);
         }
-        else
-            JohnnyGoAjaxStyle(SetVaccineObject(name, appDate), "@Url.Action("CriarVacina", "Carteira")", AddSuccess, Failure);
     });
-
-    function CreateItemOnScreen(VaccObj) {
-        var item = "<button type='button' class='list-group-item' name='" + VaccObj.vaccineName +"'><span class='badge'><a href='#' class='fas fa-edit inverseTextColor' \
-        data-vacname='"+ VaccObj.vaccineName.trim() + "' data-vacdate='" + AdjustDateVaccine(VaccObj.appliedAt) + "' data-toggle='modal' data-target='#ModalVacina'></a>\
-<a href='#' onclick='RemoveVaccine(this);' class='fas fa-eraser inverseTextColor' data-vacname='"+ VaccObj.vaccineName + "' data-vacdate='" + AdjustDateVaccine(VaccObj.appliedAt) + "'></a></span> "
-            + VaccObj.vaccineName + " - Aplicada em: "
-            + AdjustDateVaccine(VaccObj.appliedAt) + "</button>";
-
-        $("#listVaccs").append(item);
-    }
-
-    function RemoveItemOnScreen(elementName) {
-        var element = document.getElementsByName(elementName);
-        $(element).remove();
-    }
-
-    function LoadVaccines(data) {
-        var dataVacc = data;
-
-        for (var vaccine in data) {
-            if (data.hasOwnProperty(vaccine))
-                CreateItemOnScreen(data[vaccine]);
-        }
-    }
-
-    function AddSuccess(data) {
-        var dataVacc = data;
-        CreateItemOnScreen(data);
-
-        $("#ModalVacina").modal("hide");
-    }
-
-    function UpdateVaccine(vaccObj) {
-        if (typeof vaccObj !== 'undefined') {
-            var elementToChange = document.getElementById("Vacc_Old_Name").value;
-            RemoveItemOnScreen(elementToChange);
-            CreateItemOnScreen(vaccObj);
-
-            $("#ModalVacina").modal("hide");
-        }
-    }
 
     function RemoveVaccine(element) {
         var nameVacc = $(element).data('vacname'), dateVacc = $(element).data('vacdate');
@@ -132,16 +118,5 @@
         if (typeof nameVacc !== 'undefined' && typeof dateVacc !== 'undefined') {
             JohnnyGoAjaxStyle(SetVaccineObject(nameVacc, dateVacc), "@Url.Action("RemoverVacina", "Carteira")", RemoveElement, Failure);
         }
-    }
-
-    function RemoveElement(vaccObj) {
-        if (typeof vaccObj !== 'undefined') {
-            var elementToChange =vaccObj.vaccineName;
-            RemoveItemOnScreen(elementToChange);
-        }
-    }
-
-    function Failure() {
-
     }
 </script>

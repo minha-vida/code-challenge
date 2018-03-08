@@ -7,21 +7,21 @@
 <div class="col-md-12">
     <form action="/Usuario/CreateUser/" class="form-group" id="Register" method="post">
         @Html.AntiForgeryToken()
-        <div id="MailGroup" class="form-group">
+        <div id="EmailGroup" class="form-group">
             <label for="EmailUser">E-Mail:</label>
-            <input type="text" name="Email" id="EmailUser" class="form-control required" />
+            <input type="text" name="Email" id="EmailUser" class="form-control required" required />
             <label class="errorlabel"></label>
             <br />
         </div>
         <div id="NameGroup" class="form-group">
             <label for="NameUser">Nome:</label>
-            <input type="text" name="Name" id="NameUser" class="form-control required" />
+            <input type="text" name="Name" id="NameUser" class="form-control required" required />
             <label class="errorlabel"></label>
             <br />
         </div>
         <div id="PassGroup" class="form-group">
             <label for="PassUser">Senha:</label>
-            <input type="password" name="Password" id="PassUser" class="form-control required" />
+            <input type="password" name="Password" id="PassUser" class="form-control required" required />
             <label for="PassUserCheck">Confirme a Senha: </label>
             <input type="password" id="PassUserCheck" class="form-control" />
             <label class="errorlabel"></label>
@@ -29,7 +29,7 @@
         </div>
         <div id="BirthGroup" class="form-group">
             <label for="BirthUser">Data de Nascimento</label>
-            <input type="text" name="DateOfBirth" maxlength="10" id="BirthUser" class="form-control required" />
+            <input type="text" name="DateOfBirth" maxlength="10" id="BirthUser" class="form-control required" required />
             <label class="errorlabel"></label>
             <br />
         </div>
@@ -45,28 +45,25 @@
 <script type="text/javascript">
     $("#BirthUser").on("keydown", function (data) { 
         var result;
-        if (!AdjustDate(data))
-            result = ValidateDate(data.target.value);
-
-        ManageErrors(result, document.getElementById("BirthGroup"));
-        if (!result)
-            $("#BirthGroup").find(".errorlabel").text("Data Inválida");
-        else
-            $("#BirthGroup").find(".errorlabel").text("");
+        AdjustDate(data);
+        result = ValidateDate(data.target.value);
+        ManageErrors(result, document.getElementById("BirthGroup"), ".errorlabel", "Data Inválida");
     });
+
+    $("#EmailUser").on("change", function (data) {
+        JohnnyGoAjaxStyle({ email: data.target.value }, "@Url.Action("CheckIfExists", "Usuario")" , EmailExists, Failure);
+     });
 
     $("#PassUserCheck").on("keyup", function (data) {
         var result = CheckEq(data.target.value, document.getElementById("PassUser").value);
-
-        ManageErrors(result, document.getElementById("PassGroup"));
-        if (!result)
-            $("#PassGroup").find(".errorlabel").text("Senhas não conferem");
-        else
-            $("#PassGroup").find(".errorlabel").text("");
+        ManageErrors(result, document.getElementById("PassGroup"), ".errorlabel", "Senhas não conferem");
     });
 
     $("#SendUser").on("click", function (data) {
         var results = false;
+
+        if ($(".errorlabel").text() !== "")
+            return false;
 
         $(".required").each(function (index) {
             if (this.value === "") {
@@ -74,7 +71,6 @@
                 $(this).siblings(".errorlabel").html("Campo Requerido!");
             }
             else {
-                $(this).siblings(".errorlabel").html("");
                 results = true;
             }
         });
@@ -84,4 +80,10 @@
 
         return results;
     });
+
+    function EmailExists(data) {
+        if (typeof data !== 'undefined') {
+            ManageErrors(!data, document.getElementById("EmailGroup"), ".errorlabel", "Email já existe");
+        }
+    }
 </script>

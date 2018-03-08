@@ -98,5 +98,34 @@ namespace CC_CarteiraVacinacao.Models
                 return null;
             }
         }
+
+        public IEnumerable<UsuarioModel> GetUsers(string email)
+        {
+            try
+            {
+                IMongoConnection<UsuarioModel> conn = new MongoUserConnection();
+
+                var builder = Builders<UsuarioModel>.Filter;
+                FilterDefinition<UsuarioModel> filter;
+
+                filter = builder.Eq("Email", email);
+
+                IList<UsuarioModel> users = conn.Search(filter, Collection);
+
+                if (users != null)
+                {
+                    if (users.Count > 0)
+                        return users;
+                    else
+                        return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("Erro durante busca de dados, {0}", ex.Message));
+            }
+
+            return null;
+        }
     }
 }

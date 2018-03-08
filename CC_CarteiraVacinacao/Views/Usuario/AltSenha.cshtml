@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "AltSenha";
+}
+
+<h3>Alterar Senha</h3>
+<div class="col-md-12">
+    <div class="col-xs-12 col-md-6 center-block">
+        <form method="post" class="form-group" action="@Url.Action("AlterPass", "Usuario")">
+            @Html.AntiForgeryToken()
+            <div class="form-group" id="PassGroup">
+                <label for="PassChange">Nova Senha:</label>
+                <input type="password" class="form-control" id="PassChange" required />
+                <br />
+                <label for="PassChange">Confirme a Nova Senha:</label>
+                <input type="password" class="form-control" name="newPass" id="PassCheck" required />
+                <br />
+                <label class="errorlabel"></label>
+            </div>
+            <input type="submit" class="btn btn-default" id="bt_send" value="Alterar Senha" />
+            <a href="@Url.Action("Visualizar","Usuario")" class="btn btn-danger" id="bt_cancel">Cancelar</a> 
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#PassCheck").on("keyup", function (data) {
+        var result = CheckEq(data.target.value, document.getElementById("PassChange").value);
+        ManageErrors(result, document.getElementById("PassGroup"), ".errorlabel", "Senhas não conferem");
+    });
+</script>

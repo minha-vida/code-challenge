@@ -24,16 +24,27 @@
         <label for="PassUser">Senha:</label>
         <label name="Pass" id="PassUser">********</label>
         <br />
-        <a href="/Usuario/Editar/" class="btn btn-primary" id="Update_Sent">Editar Usuário</a>
-        <a href="/Usuario/Desativar/" class="btn btn-danger" id="Deactivate_User">Desativar Usuário</a>
+        <a href="@Url.Action("Editar", "Usuario")" class="btn btn-primary" id="Update_Sent">Editar Usuário</a>
+        <a href="@Url.Action("AltSenha", "Usuario")" class="btn btn-default" id="Update_Pass">Alterar Senha</a>
+        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#ModalDeact" id="Deactivate_User">Desativar Usuário</a>
     </div>
 </div>
-
-<div>
-
+<div id="ModalDeact" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reaaaaaally? Do u REAAAAAAAALLY?</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Quer realmente desativar?</h4>
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="@Url.Action("DeactivateUser","Usuario")">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" id="Deact_OK" class="btn btn-primary" value="OK" />
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-<script type="text/javascript">
-    $("#Deactivate_User").on("click", function (){ 
-        
-    });
-</script>

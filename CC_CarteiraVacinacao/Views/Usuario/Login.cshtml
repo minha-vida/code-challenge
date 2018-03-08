@@ -6,15 +6,19 @@
 <h2>Login</h2>
 
 <div class="col-md-12">
-    <div class="col-xs-12 col-md-6">
-        <form action="/Usuario/ValidateLogin/" method="post" class="form-group">
+    <div class="col-xs-12 col-md-4">
+        <form action="@Url.Action("ValidateLogin","Usuario")" method="post" class="form-group">
             @Html.AntiForgeryToken()
             <label for="Email_User">E-Mail: </label>
-            <input type="text" class="form-control" id="Email_User" name="email" value="" />
+            <input type="text" class="form-control" id="Email_User" name="email" value="" required />
             <label for="Pass_User">Password: </label>
-            <input type="password" class="form-control" id="Pass_User" name="password" value="" />
+            <input type="password" class="form-control" id="Pass_User" name="password" value="" required />
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                <label class="errorlabel"> @ViewBag.Error</label>
+            }
             <br />
-            <input type="submit" class="btn btn-default" id="SendAway" />
+            <input type="submit" class="btn btn-default" id="SendAway" value="Login" />
         </form>
     </div>
     <div class="col-md-12">

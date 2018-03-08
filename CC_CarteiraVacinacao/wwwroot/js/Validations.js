@@ -1,6 +1,5 @@
 ﻿//Script com diversas funções para cuidar de umas validações básicas
 
-
 function CkIfNOU(beautifulVar) {
     var typeResult = typeof beautifulVar;
 
@@ -12,14 +11,22 @@ function CkIfNOU(beautifulVar) {
     return false;
 }
 
-function ValidateDate(dearDate) {
+function ValidateDate(dearDate, minDate) {
     //usando o date do javascript é meio zuado, mas funcional (to a point thou...) GM
     //Formato esperado: dd/MM/yyyy
     var dataOficial = dearDate.split('/');
+    var atualDate = new Date();
     var data = new Date(dataOficial[1] + '/' + dataOficial[0] + '/' + dataOficial[2]);
     var day = data.getDate();
     if (isNaN(data.getMilliseconds()) || day !== Number(dataOficial[0]))
         return false;
+    else if (data.getMilliseconds() > atualDate.getMilliseconds)
+        return false;
+
+    if (typeof minDate !== 'undefined' && minDate !== "") {
+        return data < new Date(minDate);
+    }
+
     return true;
 }
 
@@ -42,13 +49,20 @@ function CheckEq(dataInput1, dataInput2) {
     return false;
 }
 
-function ManageErrors(flag, elementToChange) {
-    if (!flag)
+function ManageErrors(flag, elementToChange, errorClass, errorText) {
+    if (!flag) {
         $(elementToChange).addClass("has-error");
-    else
+        $(elementToChange).find(errorClass).text(errorText);
+    }
+    else {
         $(elementToChange).removeClass("has-error");
+        $(elementToChange).find(errorClass).text("");
+    }
 }
 
-function ThisIsAMail(emailAddr) {
+function Failure() {
+    $("#GlobalAlert").show("fast");
+    $("#GlobalAlert").html("Erro Durante Requisição, tente novamente!");
 
+    window.setTimeout(function () { $("#GlobalAlert").hide("fast"); $("#GlobalAlert").html(""); }, 10000);
 }

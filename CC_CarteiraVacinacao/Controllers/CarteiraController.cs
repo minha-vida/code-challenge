@@ -14,6 +14,7 @@ namespace CC_CarteiraVacinacao.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            ViewBag.Birth = DateTime.Parse(User.FindFirstValue(ClaimTypes.DateOfBirth)).ToString("MM/dd/yyyy");
             return View();
         }
 
@@ -63,7 +64,7 @@ namespace CC_CarteiraVacinacao.Controllers
             VacinaModel vacc = new VacinaModel();
             vacc = user.Vaccines.First(v => v.VaccineName == VaccineOldName && v.AppliedAt == AppliedAtOld);
 
-            if (vacc.VaccineName == VaccineName && vacc.AppliedAt == AppliedAt)
+            if ((vacc.VaccineName == VaccineName && vacc.AppliedAt == AppliedAt) || vacc.AppliedAt < user.DateOfBirth)
                 return Json("");
             else
             {

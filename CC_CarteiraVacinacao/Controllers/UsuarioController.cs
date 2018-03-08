@@ -43,20 +43,30 @@ namespace CC_CarteiraVacinacao.Controllers
 
                 if (user != null)
                 {
-                    var claims = new List<Claim>
+                    if (user.IsUserActive)
                     {
-                        new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.Name, user.Name)
-                    };
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Email, user.Email),
+                            new Claim(ClaimTypes.Name, user.Name),
+                            new Claim(ClaimTypes.DateOfBirth, user.DateOfBirth.ToString("dd/MM/yyyy"))
+                        };
 
-                    ClaimsIdentity identity = new ClaimsIdentity(claims, "login");
-                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                        ClaimsIdentity identity = new ClaimsIdentity(claims, "login");
+                        ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
-                    await HttpContext.SignInAsync(principal);
+                        await HttpContext.SignInAsync(principal);
 
-                    return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.Error = "Usuário Desativado :/";
+                        return View("Login");
+                    }
                 }
             }
+            ViewBag.Error = "Usuário ou senha inválidas!";
             return View("Login");
         }
 
@@ -76,12 +86,28 @@ namespace CC_CarteiraVacinacao.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateUser(UsuarioModel user)
         {
-            user.IsUserActive = true;
-            user.Save();
-
-            return Redirect("/");
+            if (!EmailExists(user.Email))
+            {
+                user.IsUserActive = true;
+                user.Save();
+                                
+                return Redirect("/");
+            }
+            return RedirectToAction("Registro");
         }
         
+        private bool EmailExists(string email)
+        {
+            UsuarioModel user = new UsuarioModel();
+
+            IEnumerable<UsuarioModel> users = user.GetUsers(email);
+            bool exists = false;
+            if (users != null)
+                exists = users.Count() > 0;
+
+            return exists;
+        }
+
         //Visualizacao e Edição
         [Authorize]
         public IActionResult Visualizar()
@@ -99,6 +125,12 @@ namespace CC_CarteiraVacinacao.Controllers
             return View(user);
         }
 
+        [HttpPost]
+        public JsonResult CheckIfExists(string email)
+        {
+            return Json(EmailExists(email));
+        }
+
         [Authorize]
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -107,19 +139,57 @@ namespace CC_CarteiraVacinacao.Controllers
             UsuarioModel userFull = new UsuarioModel();
             userFull = userFull.SearchWithoutPass(User.FindFirstValue(ClaimTypes.Email));
 
-            user.Id = userFull.Id;
-            user.Password = userFull.Password;
-            user.Vaccines = userFull.Vaccines;
+            if (!EmailExists(user.Email))
+            {
+                user.Id = userFull.Id;
+                user.Password = userFull.Password;
+                user.Vaccines = userFull.Vaccines;
 
-            user.Update();
+                user.Update();
+            }
 
             return RedirectToAction("Visualizar");
         }
 
         [Authorize]
-        public IActionResult DeactivateUser()
+        public IActionResult AltSenha()
         {
             return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public IActionResult AlterPass(string newPass)
+        {
+            if (!string.IsNullOrEmpty(newPass))
+            {
+                UsuarioModel userFull = new UsuarioModel();
+                userFull = userFull.SearchWithoutPass(User.FindFirstValue(ClaimTypes.Email));
+
+                if (newPass != userFull.Password)
+                {
+                    userFull.Password = newPass;
+
+                    userFull.Update();
+                }
+
+                return RedirectToAction("Visualizar");
+            }
+            return RedirectToAction("AltSenha");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> DeactivateUser()
+        {
+            UsuarioModel user = new UsuarioModel();
+            user = user.SearchWithoutPass(User.FindFirstValue(ClaimTypes.Email));
+
+            user.IsUserActive = false;
+            user.Update();
+
+            await Logout();
+
+            return Redirect("/");
         }
     }
 }
