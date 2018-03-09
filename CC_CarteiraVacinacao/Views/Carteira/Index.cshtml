@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Carteira";
+}
+<environment include="Development">
+    <script src="~/js/Vaccines.js" asp-append-version="true" type="text/javascript"></script>
+</environment>
+
+<h3>Minha Carteira</h3>
+<input type="hidden" id="YearBirth" value="@ViewBag.Birth" />
+<div class="col-md-12">
+    <div class="well">
+        <input type="button" class="btn btn-primary" id="Add_Vacc" data-toggle="modal" data-target="#ModalVacina" value="Adicionar Vacina" />
+    </div>
+</div>
+<div id="Panel_Vaccs" class="col-md-12">
+    <div id="listVaccs" class="list-group">
+
+    </div>
+</div>
+<div id="ModalVacina" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Criar Nova Vacina</h4>
+            </div>
+            <div class="modal-body">
+                <br />
+                <div class="form-group" id="VaccNameGroup">
+                    <label for="">Vacina:</label>
+                    <input type="text" id="Vacc_Name" class="form-control required" maxlength="150" />
+                    <label id="errorVaccName" class="errorlabel"></label>
+                    <input type="hidden" id="Vacc_Old_Name" value="" />
+                    <br />
+                </div>
+                <div class="form-group" id="VaccDateGroup">
+                    <label for="">Aplicada em:</label>
+                    <input type="text" id="Vacc_Applied" class="form-control required" maxlength="10" />
+                    <label id="errorAppDate" class="errorlabel"></label>
+                    <input type="hidden" id="Vacc_Applied_Old" value="" />
+                    <br />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="Vacc_OK" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        JohnnyGoAjaxStyle("", "@Url.Action("VisualizarVacinas", "Carteira")", LoadVaccines, Failure);
+    });
+
+    $("#Vacc_Applied").on("keyup", function (data) { 
+        var result;
+        AdjustDate(data);
+        result = ValidateDate(data.target.value);
+
+        if (!result)
+            errorText = "Data de Vacina Inválida";
+        else if (ValidateDate(data.target.value, document.getElementById("YearBirth").value)) {
+            result = false;
+            errorText = "Você não pode exatamente tomar uma vacina sem estar vivo...";
+        }
+
+        ManageErrors(result, document.getElementById("VaccDateGroup"), ".errorlabel", errorText);
+    });
+
+    $("#ModalVacina").on("show.bs.modal", function (event) { 
+        var element = $(event.relatedTarget);
+        var nameVacc = element.data('vacname'), dateVacc = element.data('vacdate');
+
+        if (typeof nameVacc !== 'undefined' && typeof dateVacc !== 'undefined') {
+            document.getElementById("Vacc_Old_Name").value = nameVacc;
+            document.getElementById("Vacc_Name").value = nameVacc;
+            document.getElementById("Vacc_Applied_Old").value = dateVacc;
+            document.getElementById("Vacc_Applied").value = dateVacc;
+
+            $(".modal-title").text("Editar Vacina");
+        }
+        else
+            $(".modal-title").text("Criar Nova Vacina");
+    });
+
+    $("#ModalVacina").on("hide.bs.modal", function () { 
+        document.getElementById("Vacc_Old_Name").value =
+        document.getElementById("Vacc_Name").value = 
+        document.getElementById("Vacc_Applied_Old").value = 
+        document.getElementById("Vacc_Applied").value = "";
+    });
+
+    $("#Vacc_OK").on("click", function () {
+        var name = document.getElementById("Vacc_Name").value;
+        var appDate = document.getElementById("Vacc_Applied").value;
+        var nameOld = document.getElementById("Vacc_Old_Name").value;
+        var appDateOld = document.getElementById("Vacc_Applied_Old").value;
+        var nameIsEmpty = name.trim() === "";
+
+        ManageErrors(!nameIsEmpty, document.getElementById("VaccNameGroup"), ".errorlabel", "Campo Requerido!");
+
+        if (ValidateDate(appDate) && !nameIsEmpty) {
+            if (nameOld !== "" || appDateOld !== "") {
+                if (nameOld !== name || appDateOld !== appDate) {
+                    JohnnyGoAjaxStyle(SetVaccineObjectEdit(nameOld, appDateOld, name, appDate), "@Url.Action("AlterarVacina", "Carteira")", UpdateVaccine, Failure);
+                }
+            }
+            else
+                JohnnyGoAjaxStyle(SetVaccineObject(name, appDate), "@Url.Action("CriarVacina", "Carteira")", AddSuccess, Failure);
+        }
+    });
+
+    function RemoveVaccine(element) {
+        var nameVacc = $(element).data('vacname'), dateVacc = $(element).data('vacdate');
+
+        if (typeof nameVacc !== 'undefined' && typeof dateVacc !== 'undefined') {
+            JohnnyGoAjaxStyle(SetVaccineObject(nameVacc, dateVacc), "@Url.Action("RemoverVacina", "Carteira")", RemoveElement, Failure);
+        }
+    }
+</script>

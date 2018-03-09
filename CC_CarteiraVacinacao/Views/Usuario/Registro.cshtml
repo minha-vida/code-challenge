@@ -1,0 +1,99 @@
+﻿@model CC_CarteiraVacinacao.Models.UsuarioModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+<div class="col-md-12">
+    <form action="/Usuario/CreateUser/" class="form-group" id="Register" method="post">
+        @Html.AntiForgeryToken()
+        <div id="EmailGroup" class="form-group">
+            <label for="EmailUser">E-Mail:</label>
+            <input type="email" name="Email" id="EmailUser" class="form-control required" required />
+            <label class="errorlabel"></label>
+            <br />
+        </div>
+        <div id="NameGroup" class="form-group">
+            <label for="NameUser">Nome:</label>
+            <input type="text" name="Name" id="NameUser" class="form-control required" required />
+            <label class="errorlabel"></label>
+            <br />
+        </div>
+        <div id="PassGroup" class="form-group">
+            <label for="PassUser">Senha:</label>
+            <input type="password" name="Password" id="PassUser" class="form-control required" required />
+            <label for="PassUserCheck">Confirme a Senha: </label>
+            <input type="password" id="PassUserCheck" class="form-control" />
+            <label class="errorlabel"></label>
+            <br />
+        </div>
+        <div id="BirthGroup" class="form-group">
+            <label for="BirthUser">Data de Nascimento</label>
+            <input type="text" name="DateOfBirth" maxlength="10" id="BirthUser" class="form-control required" required />
+            <label class="errorlabel"></label>
+            <br />
+        </div>
+        <label for="PhotoUser">Foto de Perfil (link):</label>
+        <div class="media">
+            <div class="media-right img-small-size">
+                <img src="https://image.flaticon.com/icons/svg/16/16480.svg" id="profile_img" class="media-object" onerror="this.src='https://image.flaticon.com/icons/svg/16/16480.svg'" />
+            </div>
+            <div class="media-body">
+                &nbsp;<input type="text" name="ProfilePhoto" id="PhotoUser" class="form-control" />
+                <label class="errorlabel"></label>
+
+            </div>
+        </div>
+        <br />
+        <input type="submit" class="btn btn-default" id="SendUser" value="Registrar" />
+    </form>
+</div>
+<script type="text/javascript">
+    $("#PhotoUser").on("change", function () {
+        $("#profile_img").attr("src", $("#PhotoUser").val());
+    });
+
+    $("#BirthUser").on("keydown", function (data) {
+        var result;
+        AdjustDate(data);
+        result = ValidateDate(data.target.value);
+        ManageErrors(result, document.getElementById("BirthGroup"), ".errorlabel", "Data Inválida");
+    });
+
+    $("#EmailUser").on("change", function (data) {
+        JohnnyGoAjaxStyle({ email: data.target.value }, "@Url.Action("CheckIfExists", "Usuario")" , EmailExists, Failure);
+     });
+
+    $("#PassUserCheck").on("keyup", function (data) {
+        var result = CheckEq(data.target.value, document.getElementById("PassUser").value);
+        ManageErrors(result, document.getElementById("PassGroup"), ".errorlabel", "Senhas não conferem");
+    });
+
+    $("#SendUser").on("click", function (data) {
+        var results = false;
+
+        if ($(".errorlabel").text() !== "")
+            return false;
+
+        $(".required").each(function (index) {
+            if (this.value === "") {
+                results = false;
+                $(this).siblings(".errorlabel").html("Campo Requerido!");
+            }
+            else {
+                results = true;
+            }
+        });
+
+        if ($(".has-errors").length > 0)
+            return false;
+
+        return results;
+    });
+
+    function EmailExists(data) {
+        if (typeof data !== 'undefined') {
+            ManageErrors(!data, document.getElementById("EmailGroup"), ".errorlabel", "Email já existe");
+        }
+    }
+</script>
