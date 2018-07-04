@@ -1,5 +1,5 @@
+using challenge.Models;
 using Microsoft.EntityFrameworkCore;
-// using server.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ namespace challenge.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        // public DbSet<Customer> Customers { get; set; }
+        public DbSet<Person> Persons { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -16,24 +16,18 @@ namespace challenge.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.Entity<Customer>().ToTable("Customer");
+            modelBuilder.Entity<Person>().ToTable("Person");
 
             base.OnModelCreating(modelBuilder);
         }
 
         public override async Task<int> SaveChangesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-
-            //  ChangeTracker.Entries()
-            //  .Where(entry =>
-            //    entry.Entity is Agreement &&
-            //    entry.State == EntityState.Added)
-            //  .ToList()
-            //  .ForEach(entry =>
-            //  {
-            //      if (entry.Reference(nameof(Agreement.Payment)).CurrentValue == null)
-            //          entry.Reference(nameof(Agreement.Payment)).CurrentValue = new PaymentInfo();
-            //  });
+            ChangeTracker.Entries()
+                .Where(entry =>
+                    entry.Entity is Person &&
+                    entry.State == EntityState.Added)
+                .ToList();
 
 
             return await base.SaveChangesAsync(cancellationToken);
