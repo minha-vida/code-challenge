@@ -24,6 +24,7 @@ namespace challenge.Features.Persons.Create
                 get => _accessToken;
                 set => _accessToken = $"Bearer {value}";
             }
+            
             public string Name { get; set; }
 
             public string Age { get; set; }
@@ -46,7 +47,7 @@ namespace challenge.Features.Persons.Create
 
             protected async override Task<CommandResult<Guid>> Handle(Command command)
             {
-                //Intantiate a new person
+                //Instantiate a new person
                 var person = new Person
                 {
                     Name = command.Name,
@@ -59,7 +60,7 @@ namespace challenge.Features.Persons.Create
                 await _dbContext.Persons.AddAsync(person);
 
                 // Notify about the new person creation
-                await _mediator.Publish(new Created { PersonId = person.Id, AccessToken = command.AccessToken});
+                await _mediator.Publish(new Created { PersonId = person.Id, AccessToken = command.AccessToken });
 
                 // Commit the data transaction
                 await _dbContext.SaveChangesAsync();
