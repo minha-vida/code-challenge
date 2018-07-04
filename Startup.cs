@@ -4,6 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using challenge.Data;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace challenge
 {
@@ -21,25 +25,28 @@ namespace challenge
         {
             services.AddCors();
             services.AddMemoryCache();
-            // services.AddMiniProfiler(options =>
-            // {
-            //     options.SqlFormatter = new StackExchange.Profiling.SqlFormatters.InlineFormatter();
-            //     options.TrackConnectionOpenClose = true;
-            //     options.ResultsAuthorize = request => { return true; };
-            //     options.RouteBasePath = "/profiler";
-            // });
+            services.AddMiniProfiler(options =>
+            {
+                options.SqlFormatter = new StackExchange.Profiling.SqlFormatters.InlineFormatter();
+                options.TrackConnectionOpenClose = true;
+                options.ResultsAuthorize = request => { return true; };
+                options.RouteBasePath = "/profiler";
+            });
 
-            // services.AddMediatR();
+            services.AddMediatR();
             services.AddDbContext<ApplicationDbContext>(options =>
                 {
                     var connectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("DefaultConnection");
 
                     options.UseSqlServer(connectionString);
                 });
+
+            services
+                .AddMvc();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // This method gets called by the runtime. Use this method to configure the HTTP request.
+          public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -51,7 +58,7 @@ namespace challenge
                 .AllowAnyHeader()
                 .AllowAnyMethod()
             );
-            // app.UseMiniProfiler();
+            app.UseMiniProfiler();
             // app.UseAuthentication();
             app.UseMvc();
             app.UseWelcomePage();
