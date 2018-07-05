@@ -17,10 +17,13 @@ namespace server.Features.Persons
     {
         public class Command : IRequest<CommandResult<Guid>>
         {
+            [Required]
             public string Name { get; set; }
 
-            public string Age { get; set; }
+            [Required]
+            public int Age { get; set; }
 
+            [Required]
             public string Photo { get; set; }
 
         }
