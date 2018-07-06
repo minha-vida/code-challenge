@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using server.Shared;
+using server.Models;
 
 namespace server.Features.Persons
 {
@@ -64,5 +65,31 @@ namespace server.Features.Persons
 
             return BadRequest();
         }
+
+        [Route("{personId}")]
+        [HttpPut]
+        public async Task<IActionResult> UpdatePerson(
+            Guid personId,
+            [FromBody] UpdatePerson.Command command
+        )
+        {
+            ModelState.Clear();
+
+            command.PersonId = personId;
+
+            if (!TryValidateModel(command))
+                return BadRequest(ModelState);
+
+            var result = await _mediator.Send(command);
+
+            if (!result)
+            {
+                ModelState.AddModelError("person", result.FailureReason);
+                return BadRequest(ModelState);
+            }
+
+            return Ok(result.Data);
+        }
+
     }
 }
