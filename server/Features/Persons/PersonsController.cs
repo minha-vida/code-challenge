@@ -91,5 +91,23 @@ namespace server.Features.Persons
             return Ok(result.Data);
         }
 
+        [Route("{personId}/vaccines")]
+        [HttpPost]
+        public async Task<IActionResult> AddPersonVaccine(
+            Guid personId,
+            [FromBody] AddPersonVaccine.Command command)
+        {
+            ModelState.Clear();
+
+            command.PersonId = personId;
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            CommandResult<Guid> result = await _mediator.Send(command);
+
+            return Created($"/persons/{{personId}}/{result.Data}", new { vaccineId = result.Data });
+        }
+
     }
 }
