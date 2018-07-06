@@ -134,7 +134,7 @@ namespace server.Features.Persons
             [FromRoute] DeletePersonVaccine.Command command)
         {
 
-             ModelState.Clear();
+            ModelState.Clear();
 
             command.PersonId = personId;
             command.VaccineId = vaccineId;
@@ -148,5 +148,33 @@ namespace server.Features.Persons
 
             return BadRequest();
         }
+
+        [Route("{personId}/vaccines/{vaccineId}")]
+        [HttpPut]
+        public async Task<IActionResult> UpdatePersonVaccine(
+            Guid personId,
+            Guid vaccineId,
+            [FromBody] UpdatePersonVaccine.Command command
+        )
+        {
+            ModelState.Clear();
+
+            command.PersonId = personId;
+            command.VaccineId = vaccineId;
+
+            if (!TryValidateModel(command))
+                return BadRequest(ModelState);
+
+            var result = await _mediator.Send(command);
+
+            if (!result)
+            {
+                ModelState.AddModelError("person", result.FailureReason);
+                return BadRequest(ModelState);
+            }
+
+            return Ok(result.Data);
+        }
+
     }
 }
