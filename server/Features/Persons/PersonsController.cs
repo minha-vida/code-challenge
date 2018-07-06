@@ -109,5 +109,21 @@ namespace server.Features.Persons
             return Created($"/persons/{{personId}}/{result.Data}", new { vaccineId = result.Data });
         }
 
+        [Route("{personId}/vaccines")]
+        public async Task<IActionResult> GetPersonVaccines(
+            Guid personId,
+            [FromQuery] GetPersonVaccines.Query query)
+        {
+            ModelState.Clear();
+
+            query.PersonId = personId;
+
+            IEnumerable<Models.Vaccine> vaccines = await _mediator.Send(query);
+
+            if (vaccines == null)
+                return NotFound();
+
+            return Ok(vaccines);
+        }
     }
 }
