@@ -32,7 +32,7 @@ class RegisterPerson extends Component {
     return (
       <div>
         <div className="container">
-          <h1 className="mt-2 mb-2">Cadastrar Pessoa</h1>
+          <h1 className="mt-5 mb-2">Register Person</h1>
           <hr />
           <form class="needs-validation" novalidate>
             <div class="form-row">
