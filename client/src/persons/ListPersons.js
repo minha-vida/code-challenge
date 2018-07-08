@@ -6,7 +6,7 @@ class ListPersons extends Component {
     return (
       <div>
         <h1 className="mt-5 mb-2">Registered Persons</h1>
-        <table className="table">
+        <table className="table mt-2">
           <thead>
             <tr>
               <th scope="col">Id</th>

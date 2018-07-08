@@ -66,7 +66,7 @@ class RegisterPerson extends Component {
               </div>
             </div>
             <div className="float-right" >
-              <Link to="/persons" className="btn btn-primary mr-2">Voltar</Link>
+              <Link to="/persons" className="btn btn-primary mr-2">Go Back</Link>
               <button className="btn btn-primary" type="submit">Save</button>
             </div>
           </form>
