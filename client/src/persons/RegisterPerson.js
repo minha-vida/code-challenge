@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class RegisterPerson extends Component {
   constructor(props) {
@@ -34,38 +35,40 @@ class RegisterPerson extends Component {
         <div className="container">
           <h1 className="mt-5 mb-2">Register Person</h1>
           <hr />
-          <form class="needs-validation" novalidate>
-            <div class="form-row">
-              <div class="col-md-6 mb-3">
+          <form className="needs-validation" novalidate>
+            <div className="form-row">
+              <div className="col-md-6 mb-3">
                 <label for="validationTooltip01">Name</label>
-                <input type="text" class="form-control" id="validationTooltip01" placeholder="Name" value="" required />
-                <div class="valid-tooltip">
+                <input type="text" className="form-control" id="validationTooltip01" placeholder="Name" value="" required />
+                <div className="valid-tooltip">
                   Looks good!
                 </div>
               </div>
-              <div class="col-md-2 mb-3">
+              <div className="col-md-2 mb-3">
                 <label for="validationTooltip02">Age</label>
-                <input type="text" class="form-control" id="validationTooltip02" placeholder="Age" value="" required />
-                <div class="valid-tooltip">
+                <input type="text" className="form-control" id="validationTooltip02" placeholder="Age" value="" required />
+                <div className="valid-tooltip">
                   Looks good!
                 </div>
               </div>
-              <div class="col-md-4 mb-3">
+              <div className="col-md-4 mb-3">
                 <label for="validationTooltipUsername">Photo</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" />
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                <div className="input-group">
+                  <div className="custom-file">
+                    <input type="file" className="custom-file-input" id="inputGroupFile01" />
+                    <label className="custom-file-label" for="inputGroupFile01">Choose file</label>
                   </div>
 
                 </div>
-                <div class="invalid-tooltip">
+                <div className="invalid-tooltip">
                   Please choose a photo for the person.
                   </div>
               </div>
             </div>
-
-            <button class="btn btn-primary float-right" type="submit">Save</button>
+            <div className="float-right" >
+              <Link to="/persons" className="btn btn-primary mr-2">Voltar</Link>
+              <button className="btn btn-primary" type="submit">Save</button>
+            </div>
           </form>
         </div>
       </div>
