@@ -1,7 +1,27 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 class ListPersons extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      persons: []
+    }
+  }
+
+  // Component Will Mount, then, when it's mounted it will do the fetch API
+  componentDidMount() {
+    fetch('http://localhost:5000/persons')
+      .then(response => response.json())
+      .then(persons => {
+        this.setState({
+          persons
+        })
+      })
+      .catch(err => console.error(err))
+  }
+
   render() {
     return (
       <div>
@@ -15,18 +35,19 @@ class ListPersons extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td scope="row">12</td>
-              <td>Mark</td>
-              <td className="text-right">
-                {/* <Link className="m-2" to={`/persons/${person.id}`}>Detalhes</Link> */}
-                <Link className="mr-1" to="">Details</Link>
-                {/* <Link className="m-2" to={`/persons/${person.id}/edit`}>Edit</Link> */}
-                <Link className="mr-1" to="">Edit</Link>
-                {/* <button onClick={() => this.handleDeletePerson(person.id)} type="button" className="btn btn-primary m-2">Excluir</button> */}
-                <button type="button" className="btn btn-primary">Delete</button>
-              </td>
-            </tr>
+            {this.state.persons.map(p => (
+              <tr>
+                <td scope="row">{p.id}</td>
+                <td>{p.name}</td>
+                <td className="text-right">
+                  <Link className="m-2" to={`/persons/${p.id}`}>Details</Link>
+                  {/* <Link className="m-2" to={`/persons/${p.id}/edit`}>Edit</Link> */}
+                  <Link className="mr-1" to="">Edit</Link>
+                  {/* <button onClick={() => this.handleDeletePerson(p.id)} type="button" className="btn btn-primary m-2">Excluir</button> */}
+                  <button type="button" className="btn btn-primary">Delete</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div >
@@ -34,4 +55,4 @@ class ListPersons extends Component {
   }
 }
 
-export default ListPersons
+export default withRouter(ListPersons)
