@@ -4,46 +4,40 @@ class PersonDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      vaccines: []
+      vaccines: [],
+      vaccine: {
+        name: '',
+        appliedAt: ''
+      }
     }
   }
 
-  handleAddVaccines(event) {
+  handleChangeVaccineName(event) {
     this.setState({
-      vaccines: [...this.state.vaccines, {
-        name: '', appliedAt: ''
-      }]
-    })
-  }
-
-  handleChangeVaccineName(event, index) {
-    this.setState({
-      vaccines: this.state.vaccines.map((b, idx) => {
-        if (idx !== index) return b
-
-        return { ...b, name: event.target.value }
-      })
+      vaccine: {
+        ...this.state.vaccine,
+        name: event.target.value
+      }
     })
   }
 
   handleChangeVaccineAppliedAt(event, index) {
     this.setState({
-      vaccines: this.state.vaccines.map((b, idx) => {
-        if (idx !== index) return b
-
-        return { ...b, appliedAt: event.target.value }
-      })
+      vaccine: {
+        ...this.state.vaccine,
+        appliedAt: event.target.value
+      }
     })
   }
 
   handleSubmit(e) {
     e.preventDefault()
-  }
-
-  handleCancel(e) {
-    e.preventDefault()
+    console.log(this.state.vaccine)
     this.setState({
-      vaccines: []
+      vaccine: {
+        name: '',
+        appliedAt: ''
+      }
     })
   }
 
@@ -69,24 +63,20 @@ class PersonDetails extends Component {
           <h2 className="ml-3">Vaccines</h2>
         </div>
         <div>
-          {this.state.vaccines.map((v, index) => (
-            <div className="mt-2" key={index}>
-              <div className="row mt-2">
-                <div className="col-sm-8">
-                  <label htmlFor="vaccineName">Name</label>
-                  <input onChange={(e) => this.handleChangeVaccineName(e, index)} value={v.name} type="text" className="form-control" placeholder="Vaccine Name" />
-                </div>
-                <div className="col-sm-4">
-                  <label htmlFor="dependentDocumentNumber">AppliedAt</label>
-                  <input onChange={(e) => this.handleChangeVaccineAppliedAt(e, index)} value={v.appliedAt} type="text" className="form-control" placeholder="AppliedAt" />
-                </div>
+          <div className="mt-2">
+            <div className="row mt-2">
+              <div className="col-sm-8">
+                <label htmlFor="vaccineName">Name</label>
+                <input onChange={(e) => this.handleChangeVaccineName(e)} value={this.state.vaccine.name} type="text" className="form-control" placeholder="Vaccine Name" />
+              </div>
+              <div className="col-sm-4">
+                <label htmlFor="dependentDocumentNumber">AppliedAt</label>
+                <input onChange={(e) => this.handleChangeVaccineAppliedAt(e)} value={this.state.vaccine.appliedAt} type="text" className="form-control" placeholder="AppliedAt" />
               </div>
             </div>
-          ))}
+          </div>
           < div className="row mb-4 mr-1 mt-4 float-right" >
-            <button onClick={this.handleAddVaccines.bind(this)} type="button" className="btn btn-primary mr-2">Add Vaccine</button>
             <button onClick={this.handleSubmit.bind(this)} type="button" className="btn btn-primary mr-2">Save</button>
-            <button onClick={this.handleCancel.bind(this)} type="button" className="btn btn-primary">Cancel</button>
           </div>
           <div className="card mb-2" style={{ width: '100%' }}>
             <div className="card-body">
