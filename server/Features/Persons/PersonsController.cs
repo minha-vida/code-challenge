@@ -37,7 +37,7 @@ namespace server.Features.Persons
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] GetPersons.Query query)
         {
-            IEnumerable<Models.Person> persons = await _mediator.Send(query);
+            IEnumerable<PersonViewModel> persons = await _mediator.Send(query);
 
             return Ok(persons);
         }

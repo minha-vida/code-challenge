@@ -6,6 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using server.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace server.Features.Persons
 {
@@ -20,10 +22,6 @@ namespace server.Features.Persons
         {
             readonly ApplicationDbContext _context;
 
-            public Handler()
-            {
-            }
-
             public Handler(ApplicationDbContext context)
             {
                 _context = context;
@@ -35,17 +33,6 @@ namespace server.Features.Persons
                     .FirstOrDefaultAsync(p => p.Id == request.PersonId);
 
                 return person != null ? new PersonViewModel(person) : null;
-            }
-        }
-
-        public class PersonViewModel : Person
-        {
-            public PersonViewModel(Person person)
-            {
-                base.Id = person.Id;
-                base.Name = person.Name;
-                base.Age = person.Age;
-                base.Vaccines = person.Vaccines;
             }
         }
     }

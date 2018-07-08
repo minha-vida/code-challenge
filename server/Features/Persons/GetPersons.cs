@@ -16,12 +16,12 @@ namespace server.Features.Persons
 {
     public class GetPersons
     {
-        public class Query : IRequest<IEnumerable<Person>>
+        public class Query : IRequest<IEnumerable<PersonViewModel>>
         {
             public string Q { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, IEnumerable<Person>>
+        public class Handler : IRequestHandler<Query, IEnumerable<PersonViewModel>>
         {
             readonly ApplicationDbContext _context;
 
@@ -30,8 +30,8 @@ namespace server.Features.Persons
                 _context = context;
             }
 
-            public async Task<IEnumerable<Person>> Handle(Query request, CancellationToken cancellationToken) => await _context.Persons
-                .ToListAsync();
+            public async Task<IEnumerable<PersonViewModel>> Handle(Query request, CancellationToken cancellationToken) => 
+                await _context.Persons.Select(p => new PersonViewModel(p)).ToListAsync();
         }
     }
 }
