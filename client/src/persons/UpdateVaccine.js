@@ -13,6 +13,27 @@ class UpdateVaccine extends Component {
     }
   }
 
+  componentDidMount() {
+    const personId = this.props.match.params.id
+    const vaccineId = this.props.match.params.vaccineId
+
+    fetch(`http://localhost:5000/persons/${personId}/vaccines/${vaccineId}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      }
+    })
+      .then(response => response.json())
+      .then(vaccine =>
+        this.setState({
+          vaccine: {
+            name: vaccine.name,
+            appliedAt: vaccine.appliedAt
+          }
+        }))
+        .catch(error => console.error(`Fetch Error =\n`, error))
+  }
+
   handleChangeVaccineName(event) {
     this.setState({
       vaccine: {

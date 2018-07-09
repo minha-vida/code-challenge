@@ -14,6 +14,27 @@ class UpdatePerson extends Component {
     }
   }
 
+  componentDidMount() {
+    const personId = this.props.match.params.id
+
+    fetch(`http://localhost:5000/persons/${personId}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      }
+    })
+      .then(response => response.json())
+      .then(person =>
+        this.setState({
+          person: {
+            name: person.name,
+            age: person.age,
+            photo: person.photo
+          }
+        }))
+        .catch(error => console.error(`Fetch Error =\n`, error))
+  }
+
   handleNameChange(event) {
     this.setState({
       person: {
