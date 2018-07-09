@@ -41,8 +41,6 @@ class ListPersons extends Component {
                 <td>{p.name}</td>
                 <td className="text-right">
                   <Link className="m-2" to={`/persons/${p.id}`}>Details</Link>
-                  {/* <button onClick={() => this.handleDeletePerson(p.id)} type="button" className="btn btn-primary m-2">Excluir</button> */}
-                  <button type="button" className="btn btn-primary">Delete</button>
                 </td>
               </tr>
             ))}

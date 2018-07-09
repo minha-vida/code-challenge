@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router'
 
 import PersonVaccines from './PersonVaccines';
 
@@ -7,7 +8,8 @@ class PersonDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      person: {}
+      person: {},
+      deleted: false
     }
   }
 
@@ -25,10 +27,22 @@ class PersonDetails extends Component {
       .catch(err => console.error(err))
   }
 
+  handleDeletePerson(id) {
+    fetch(`http://localhost:5000/persons/${id}`, {
+      method: 'DELETE'
+    })
+      .then(deleted =>
+        this.setState({
+          deleted: true
+        }))
+      .catch(error => console.error(`Fetch Error =\n`, error))
+  }
+
   render() {
     const id = this.props.match.params.id
     return (
       <div>
+        {this.state.deleted && <Redirect to='/persons' />}
         <h1 className="mt-5 mb-2">Person Details</h1>
         <hr />
         <div className="row">
@@ -46,11 +60,11 @@ class PersonDetails extends Component {
         </div>
         <div className="float-right mt-2" >
           <Link to={`/persons/${id}/edit`} className="btn btn-primary mr-2">Edit</Link>
-        </div>
-        {this.state.person.id && <PersonVaccines personId={this.state.person.id} />}
-        <div className="float-right mt-2" >
+          {/* <button onClick={() => this.handleDeletePerson(p.id)} type="button" className="btn btn-primary m-2">Excluir</button> */}
+          <button type="button" onClick={() => this.handleDeletePerson(id)} className="btn btn-primary mr-2">Delete</button>
           <Link to="/persons" className="btn btn-primary">Go Back</Link>
         </div>
+        {this.state.person.id && <PersonVaccines personId={this.state.person.id} />}
       </div>
     )
   }
