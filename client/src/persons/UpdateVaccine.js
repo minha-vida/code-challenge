@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class UpdateVaccine extends Component {
   constructor(props) {
@@ -8,7 +8,8 @@ class UpdateVaccine extends Component {
       vaccine: {
         name: '',
         appliedAt: ''
-      }
+      },
+      updated: false
     }
   }
 
@@ -30,31 +31,58 @@ class UpdateVaccine extends Component {
     })
   }
 
+  handleSubmit(e) {
+    e.preventDefault()
+
+    const personId = this.props.match.params.id
+    const vaccineId = this.props.match.params.vaccineId
+
+    fetch(`http://localhost:5000/persons/${personId}/vaccines/${vaccineId}`, {
+      method: 'PUT',
+      mode: 'cors',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(this.state.vaccine)
+    })
+      .then(response => response.json())
+      .then(updated =>
+        this.setState({
+          updated: true
+        }))
+      .catch(error => console.error(`Fetch Error =\n`, error))
+
+    this.setState({
+      vaccine: {
+        name: '',
+        appliedAt: ''
+      }
+    })
+  }
+
   render() {
+    const personId = this.props.match.params.id
+
+    console.log(this.props)
     return (
       <div>
+        {this.state.updated && <Redirect to={`/persons/${personId}`} />}
         <div className="container">
           <h1 className="mt-5 mb-2">Update vaccine</h1>
           <hr />
-          <form className="needs-validation" novalidate>
+          <form className="needs-validation" onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-row">
               <div className="col-md-8 mb-3">
-                <label for="validationTooltip01">Name</label>
-                <input type="text" className="form-control" id="validationTooltip01" placeholder="Name" value="" required />
-                <div className="valid-tooltip">
-                  Looks good!
-                </div>
+                <label htmlFor="validationTooltip01">Name</label>
+                <input onChange={(e) => this.handleChangeVaccineName(e)} value={this.state.vaccine.name} type="text" className="form-control" id="validationTooltip01" placeholder="Vaccin Name" required />
               </div>
               <div className="col-md-4 mb-3">
-                <label for="validationTooltip02">AppliedAt</label>
-                <input type="text" className="form-control" id="validationTooltip02" placeholder="AppliedAt" value="" required />
-                <div className="valid-tooltip">
-                  Looks good!
-                </div>
+                <label htmlFor="validationTooltip02">AppliedAt</label>
+                <input onChange={(e) => this.handleChangeVaccineAppliedAt(e)} value={this.state.vaccine.appliedAt} type="text" className="form-control" id="validationTooltip02" placeholder="YYYY-MM-DD" required />
               </div>
             </div>
             <div className="float-right" >
-              <Link to="/persons/:id" className="btn btn-primary mr-2">Go Back</Link>
+              <Link to={`/persons/${personId}`} className="btn btn-primary mr-2">Go Back</Link>
               <button className="btn btn-primary" type="submit">Save</button>
             </div>
           </form>
