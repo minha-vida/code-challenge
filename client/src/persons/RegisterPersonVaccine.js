@@ -51,7 +51,7 @@ class RegisterPersonVaccine extends Component {
           registered: true
         }))
       .catch(error => console.error(`Fetch Error =\n`, error))
-
+      
     this.setState({
       vaccine: {
         name: '',
