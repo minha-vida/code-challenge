@@ -1,72 +1,113 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class UpdatePerson extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      age: '',
-      photo: ''
+      person: {
+        name: '',
+        age: '',
+        photo: ''
+      },
+      updated: false
     }
   }
 
   handleNameChange(event) {
     this.setState({
-      name: event.target.value
+      person: {
+        ...this.state.person,
+        name: event.target.value
+      }
     })
   }
 
   handleAgeChange(event) {
     this.setState({
-      age: event.target.value
+      person: {
+        ...this.state.person,
+        age: event.target.value
+      }
     })
   }
 
   handlePhotoChange(event) {
+    var self = this;
+    var reader = new FileReader();
+    var file = event.target.files[0];
+
+    reader.onload = function (e) {
+      self.setState({
+        person: {
+          ...self.state.person,
+          photo: e.target.result
+        }
+      });
+    };
+    reader.readAsDataURL(file)
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+
+    const personId = this.props.match.params.id
+
+    fetch(`http://localhost:5000/persons/${personId}`, {
+      method: 'PUT',
+      mode: 'cors',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(this.state.person)
+    })
+      .then(response => response.json())
+      .then(updated =>
+        this.setState({
+          updated: true
+        }))
+      .catch(error => console.error(`Fetch Error =\n`, error))
+
     this.setState({
-      photo: event.target.value
+      person: {
+        name: '',
+        age: '',
+        photo: ''
+      }
     })
   }
 
   render() {
+    const personId = this.props.match.params.id
+
     return (
       <div>
+        {this.state.updated && <Redirect to={`/persons/${personId}`}/> }
         <div className="container">
           <h1 className="mt-5 mb-2">Update Person</h1>
           <hr />
-          <form className="needs-validation" novalidate>
+          <form className="needs-validation" onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-row">
               <div className="col-md-6 mb-3">
-                <label for="validationTooltip01">Name</label>
-                <input type="text" className="form-control" id="validationTooltip01" placeholder="Name" value="" required />
-                <div className="valid-tooltip">
-                  Looks good!
-                </div>
+                <label htmlFor="validationTooltip01">Name</label>
+                <input onChange={(e) => this.handleNameChange(e)} type="text" className="form-control" id="validationTooltip01" placeholder="Name" value={this.state.person.name} required />
               </div>
               <div className="col-md-2 mb-3">
-                <label for="validationTooltip02">Age</label>
-                <input type="text" className="form-control" id="validationTooltip02" placeholder="Age" value="" required />
-                <div className="valid-tooltip">
-                  Looks good!
-                </div>
+                <label htmlFor="validationTooltip02">Age</label>
+                <input onChange={(e) => this.handleAgeChange(e)} type="text" className="form-control" id="validationTooltip02" placeholder="Age" value={this.state.person.age} required />
               </div>
               <div className="col-md-4 mb-3">
-                <label for="validationTooltipUsername">Photo</label>
+                <label htmlFor="validationTooltipUsername">Photo</label>
                 <div className="input-group">
                   <div className="custom-file">
-                    <input type="file" className="custom-file-input" id="inputGroupFile01" />
-                    <label className="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    <input onChange={(e) => this.handlePhotoChange(e)} type="file" className="custom-file-input" id="inputGroupFile01" />
+                    <label className="custom-file-label" htmlFor="inputGroupFile01">Choose file</label>
                   </div>
-
                 </div>
-                <div className="invalid-tooltip">
-                  Please choose a photo for the person.
-                  </div>
               </div>
             </div>
             <div className="float-right" >
-              <Link to="/persons/:id" className="btn btn-primary mr-2">Go Back</Link>
+              <Link to={`/persons/${personId}`} className="btn btn-primary mr-2">Go Back</Link>
               <button className="btn btn-primary" type="submit">Save</button>
             </div>
           </form>
