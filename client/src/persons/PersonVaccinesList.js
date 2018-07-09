@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import RegisterPersonVaccine from './RegisterPersonVaccine';
 import moment from 'moment'
+import { Redirect } from 'react-router'
+
+import RegisterPersonVaccine from './RegisterPersonVaccine';
 
 class PersonVaccinesList extends Component {
   constructor(props) {
@@ -10,10 +12,9 @@ class PersonVaccinesList extends Component {
     }
   }
 
-  componentDidMount() {
+  listVacinnes() {
     const id = this.props.personId
-    console.log('this.props:', this.props)
-    console.log('id', id)
+    
     fetch(`http://localhost:5000/persons/${id}/vaccines`)
       .then(response => response.json())
       .then(vaccines => {
@@ -24,9 +25,23 @@ class PersonVaccinesList extends Component {
       .catch(err => console.error(err))
   }
 
+  componentDidMount() {
+    this.listVacinnes()
+  }
+
+  handleDeleteVaccine(personId, vaccineId) {
+    fetch(`http://localhost:5000/persons/${personId}/vaccines/${vaccineId}`, {
+      method: 'DELETE'
+    })
+      .then(deleted => {
+        this.listVacinnes()
+      }).catch(error => console.error(`Fetch Error =\n`, error))
+  }
+
   render() {
+    const personId = this.props.personId
     return (
-      <div> 
+      <div>
         {this.state.vaccines.map((v, index) => (
           <div className="card mb-2" key={index} style={{ width: '100%' }}>
             <div className="card-body">
@@ -36,7 +51,7 @@ class PersonVaccinesList extends Component {
               <p className="card-text">CreatedAt: {moment(v.createdAt).format('DD/MM/YYYY')}</p>
               <p className="card-text">UpdatedAt: {moment(v.updatedAt).format('DD/MM/YYYY')}</p>
               <a href="#" className="card-link">Edit</a>
-              <a href="#" className="card-link">Delete</a>
+              <a href="#" onClick={() => this.handleDeleteVaccine(personId, v.id)} className="card-link">Delete</a>
             </div>
           </div>
         ))}
