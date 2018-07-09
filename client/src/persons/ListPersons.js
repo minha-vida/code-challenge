@@ -35,8 +35,8 @@ class ListPersons extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.persons.map(p => (
-              <tr>
+            {this.state.persons.map((p, index) => (
+              <tr key={index}>
                 <td scope="row">{p.id}</td>
                 <td>{p.name}</td>
                 <td className="text-right">
