@@ -14,7 +14,7 @@ const Routes = () => (
     <Route path="/persons/new" component={RegisterPerson} />
     <Route path="/persons/:id/edit" component={UpdatePerson} />
     <Route path="/persons/:id/vaccines/new" component={RegisterPersonVaccine} />
-    <Route path="/persons/:id/vaccines/edit" component={UpdateVaccine} />
+    <Route path="/persons/:id/vaccines/:vaccineId/edit" component={UpdateVaccine} />
     <Route path="/persons/:id" component={PersonDetails} />
   </Switch>
 )

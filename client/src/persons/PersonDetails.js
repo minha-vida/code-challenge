@@ -15,8 +15,7 @@ class PersonDetails extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id
-    console.log('this.props:', this.props)
-    console.log('id', id)
+
     fetch(`http://localhost:5000/persons/${id}`)
       .then(response => response.json())
       .then(person => {
@@ -40,6 +39,7 @@ class PersonDetails extends Component {
 
   render() {
     const id = this.props.match.params.id
+
     return (
       <div>
         {this.state.deleted && <Redirect to='/persons' />}
@@ -47,7 +47,7 @@ class PersonDetails extends Component {
         <hr />
         <div className="row">
           <div className="col-lg-12 mb-2 justify-content-center text-center">
-            <img className="rounded-circle" src={this.state.person.photo} width="100px" height="100px" />
+            <img className="rounded-circle" src={this.state.person.photo} width="100px" height="100px" alt="Person Details" />
           </div>
           <div className="col-lg-10">
             <label htmlFor="personName">Name</label>

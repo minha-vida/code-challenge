@@ -9,7 +9,6 @@ class PersonVaccines extends Component {
   }
 
   render() {
-    console.log(this.props, 'props')
     return (
       <div>
         <div className="row mt-4 mb-2">
@@ -17,7 +16,6 @@ class PersonVaccines extends Component {
         </div>
         <div>
           <AddPersonVaccine personId={this.props.personId} />
-          {/* <RegisterPersonVaccine personId={this.props.personId} {...this.props}/> */}
           <PersonVaccinesList {...this.props} />
         </div>
       </div>

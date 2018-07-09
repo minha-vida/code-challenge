@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { Redirect } from 'react-router'
-
-import RegisterPersonVaccine from './RegisterPersonVaccine';
+import { Link } from 'react-router-dom'
 
 class PersonVaccinesList extends Component {
   constructor(props) {
@@ -50,8 +48,8 @@ class PersonVaccinesList extends Component {
               <h6 className="card-subtitle mb-2 text-muted">AppliedAt: {moment(v.appliedAt).format('DD/MM/YYYY')}</h6>
               <p className="card-text">CreatedAt: {moment(v.createdAt).format('DD/MM/YYYY')}</p>
               <p className="card-text">UpdatedAt: {moment(v.updatedAt).format('DD/MM/YYYY')}</p>
-              <a href="#" className="card-link">Edit</a>
-              <a href="#" onClick={() => this.handleDeleteVaccine(personId, v.id)} className="card-link">Delete</a>
+              <Link className="btn btn-primary mr-2" to={`/persons/${personId}/vaccines/${v.id}/edit`}>Edit</Link>
+              <button type="button" onClick={() => this.handleDeleteVaccine(personId, v.id)} className="btn btn-primary">Delete</button>
             </div>
           </div>
         ))}

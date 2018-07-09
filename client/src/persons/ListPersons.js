@@ -37,7 +37,7 @@ class ListPersons extends Component {
           <tbody>
             {this.state.persons.map((p, index) => (
               <tr key={index}>
-                <td scope="row">{p.id}</td>
+                <td>{p.id}</td>
                 <td>{p.name}</td>
                 <td className="text-right">
                   <Link className="m-2" to={`/persons/${p.id}`}>Details</Link>

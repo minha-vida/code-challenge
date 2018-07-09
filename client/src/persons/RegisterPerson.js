@@ -45,7 +45,6 @@ class RegisterPerson extends Component {
           photo: e.target.result
         }
       });
-      console.log(self.state.photo)
     };
     reader.readAsDataURL(file)
   }
