@@ -176,5 +176,23 @@ namespace server.Features.Persons
             return Ok(result.Data);
         }
 
+        [Route("{personId}/vaccines/{vaccineId}")]
+        [HttpGet]
+        public async Task<IActionResult> GetVaccineById(
+            Guid personId,
+            Guid vaccineId,
+            [FromQuery]GetVaccine.Query query)
+        {
+            ModelState.Clear();
+
+            query.PersonId = personId;
+            query.VaccineId = vaccineId;
+
+            var vaccine = await _mediator.Send(query);
+            if (vaccine == null)
+                return NotFound();
+            return Ok(vaccine);
+        }
+
     }
 }
