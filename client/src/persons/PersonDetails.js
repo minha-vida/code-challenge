@@ -24,7 +24,6 @@ class PersonDetails extends Component {
   }
 
   render() {
-    console.log(this.state.person)
     return (
       <div>
         <h1 className="mt-5 mb-2">Person Details</h1>
