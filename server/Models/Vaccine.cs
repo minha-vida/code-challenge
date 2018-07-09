@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace server.Models
 {
@@ -13,5 +14,8 @@ namespace server.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public DateTime UpdatedAt { get; set; }
+
+        [JsonIgnore]
+        public virtual Person Person { get; set; }
     }
 }

@@ -21,6 +21,11 @@ namespace server.Data
             modelBuilder.Entity<Person>().ToTable("Person");
             modelBuilder.Entity<Vaccine>().ToTable("Vaccine");
 
+            modelBuilder.Entity<Person>()
+                .HasMany(p => p.Vaccines)
+                .WithOne(v => v.Person)
+                .OnDelete(DeleteBehavior.Cascade);
+
             base.OnModelCreating(modelBuilder);
         }
 
