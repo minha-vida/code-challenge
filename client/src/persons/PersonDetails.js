@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+
 import PersonVaccines from './PersonVaccines';
 
 class PersonDetails extends Component {
@@ -24,6 +26,7 @@ class PersonDetails extends Component {
   }
 
   render() {
+    const id = this.props.match.params.id
     return (
       <div>
         <h1 className="mt-5 mb-2">Person Details</h1>
@@ -41,7 +44,13 @@ class PersonDetails extends Component {
             <p className="form-control">{this.state.person.age}</p>
           </div>
         </div>
+        <div className="float-right mt-2" >
+          <Link to={`/persons/${id}/edit`} className="btn btn-primary mr-2">Edit</Link>
+        </div>
         {this.state.person.id && <PersonVaccines personId={this.state.person.id} />}
+        <div className="float-right mt-2" >
+          <Link to="/persons" className="btn btn-primary">Go Back</Link>
+        </div>
       </div>
     )
   }
