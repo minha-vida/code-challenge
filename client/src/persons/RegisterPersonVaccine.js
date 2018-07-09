@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 
 class RegisterPersonVaccine extends Component {
   constructor(props) {
@@ -61,9 +62,12 @@ class RegisterPersonVaccine extends Component {
 
   render() {
     const personId = this.props.match.params.id
-    
+
     return (
-      <div>
+      <div className="container">
+        <h1 className="mt-5 mb-2">Add New Vaccine</h1>
+        <hr />
+
         {this.state.registered && <Redirect to={`/persons/${personId}`} />}
         <form onSubmit={this.handleSubmit.bind(this)} >
           <div className="form-group mt-2">
@@ -79,7 +83,8 @@ class RegisterPersonVaccine extends Component {
             </div>
           </div>
           < div className="row mb-4 mr-1 mt-4 float-right">
-            <button type="submit" className="btn btn-primary mr-2">Save</button>
+            <Link to={`/persons/${personId}`} className="btn btn-primary mr-2">Go Back</Link>
+            <button type="submit" className="btn btn-primary">Save</button>
           </div>
         </form>
       </div>
