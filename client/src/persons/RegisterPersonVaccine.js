@@ -64,7 +64,7 @@ class RegisterPersonVaccine extends Component {
             </div>
             <div className="col-sm-4">
               <label htmlFor="dependentDocumentNumber">AppliedAt</label>
-              <input onChange={(e) => this.handleChangeVaccineAppliedAt(e)} value={this.state.vaccine.appliedAt} type="text" className="form-control" placeholder="AppliedAt" />
+              <input onChange={(e) => this.handleChangeVaccineAppliedAt(e)} value={this.state.vaccine.appliedAt} type="text" className="form-control" placeholder="YYYY-MM-DD" />
             </div>
           </div>
         </div>
