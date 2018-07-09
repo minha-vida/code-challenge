@@ -22,7 +22,7 @@ class PersonVaccinesList extends Component {
           vaccines
         })
       })
-      .catch(err => console.error(err))
+      .catch(error => console.error(`Fetch Error =\n`, error))
   }
 
   componentDidMount() {

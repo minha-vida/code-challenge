@@ -24,7 +24,7 @@ class PersonDetails extends Component {
           person
         })
       })
-      .catch(err => console.error(err))
+      .catch(error => console.error(`Fetch Error =\n`, error))
   }
 
   handleDeletePerson(id) {

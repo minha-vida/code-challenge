@@ -19,7 +19,7 @@ class ListPersons extends Component {
           persons
         })
       })
-      .catch(err => console.error(err))
+      .catch(error => console.error(`Fetch Error =\n`, error))
   }
 
   render() {
