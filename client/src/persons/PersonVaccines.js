@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import RegisterPersonVaccine from './RegisterPersonVaccine'
-import GetPersonVaccines from './GetPersonVaccines'
+import PersonVaccinesList from './PersonVaccinesList'
 
 class PersonVaccines extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class PersonVaccines extends Component {
         </div>
         <div>
           <RegisterPersonVaccine personId={this.props.personId}/>
-          <GetPersonVaccines {...this.props} />
+          <PersonVaccinesList {...this.props} />
         </div>
       </div>
     )
