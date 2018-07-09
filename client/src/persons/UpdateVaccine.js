@@ -84,7 +84,6 @@ class UpdateVaccine extends Component {
   render() {
     const personId = this.props.match.params.id
 
-    console.log(this.props)
     return (
       <div>
         {this.state.updated && <Redirect to={`/persons/${personId}`} />}

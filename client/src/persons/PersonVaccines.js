@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
-import RegisterPersonVaccine from './RegisterPersonVaccine'
+
 import PersonVaccinesList from './PersonVaccinesList'
 import AddPersonVaccine from './AddPersonVaccine'
 
 class PersonVaccines extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div>
