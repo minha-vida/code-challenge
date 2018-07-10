@@ -33,7 +33,7 @@ class PersonsList extends Component {
         <h1 className="mt-5">Registered Persons</h1>
         <div className="row">
           {this.state.persons.map((p, index) => (
-            <div className="col-4 mt-4" key={index}>
+            <div className="col-lg-4 col-md-6 mt-4" key={index}>
               <div className="card">
                 <div className="card-body">
                   <div className="text-center">

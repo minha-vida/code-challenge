@@ -51,7 +51,7 @@ class PersonVaccinesList extends Component {
     return (
       <div className="row">
         {this.state.vaccines.map((v, index) => (
-          <div className="col-md-4 mb-4" key={index}>
+          <div className="col-lg-4 col-md-6 mb-4" key={index}>
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">
