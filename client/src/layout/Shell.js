@@ -13,14 +13,14 @@ class Shell extends Component {
   render() {
     return (
       <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container">
             <Link to='/' className="navbar-brand">Vaccine</Link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
                 <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/persons" role="button" aria-haspopup="true" aria-expanded="false">Persons</a>
                   <div className="dropdown-menu">
@@ -29,8 +29,8 @@ class Shell extends Component {
                   </div>
                 </li>
               </ul>
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
                   <UserProfile />
                 </li>
               </ul>
