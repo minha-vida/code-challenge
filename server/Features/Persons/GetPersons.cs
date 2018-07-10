@@ -36,6 +36,7 @@ namespace server.Features.Persons
             public async Task<IEnumerable<PersonViewModel>> Handle(Query request, CancellationToken cancellationToken) =>
                 await _context.Persons
                     .Where(p => p.OwnerId == request.OwnerId)
+                    .OrderBy(p => p.Name)
                     .Include(p => p.Vaccines)
                     .Select(p => new PersonViewModel(p))
                     .ToListAsync();

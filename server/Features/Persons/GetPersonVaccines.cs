@@ -41,7 +41,7 @@ namespace server.Features.Persons
                     .Include(p => p.Vaccines)
                     .FirstOrDefaultAsync(p => p.Id == request.PersonId);
 
-                return person.Vaccines;
+                return person.Vaccines.OrderByDescending(p => p.AppliedAt);
             }
         }
     }
