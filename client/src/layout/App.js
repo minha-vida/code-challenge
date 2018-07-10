@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { OidcProvider } from 'redux-oidc'
+import { Switch, Route } from 'react-router'
 
 import { store, persistor, history } from '../store'
 
