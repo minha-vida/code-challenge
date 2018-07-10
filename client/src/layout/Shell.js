@@ -20,15 +20,17 @@ class Shell extends Component {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/persons" role="button" aria-haspopup="true" aria-expanded="false">Persons</a>
-                  <div className="dropdown-menu">
-                    <Link to={'/persons'} className="dropdown-item">List Persons</Link>
-                    <Link to={'/persons/new'} className="dropdown-item">Register Person</Link>
-                  </div>
-                </li>
-              </ul>
+              {this.props.user && (
+                <ul className="navbar-nav">
+                  <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/persons" role="button" aria-haspopup="true" aria-expanded="false">Persons</a>
+                    <div className="dropdown-menu">
+                      <Link to={'/persons'} className="dropdown-item">List Persons</Link>
+                      <Link to={'/persons/new'} className="dropdown-item">Register Person</Link>
+                    </div>
+                  </li>
+                </ul>
+              )}
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <UserProfile />
