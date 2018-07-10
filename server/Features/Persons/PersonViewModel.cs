@@ -11,6 +11,7 @@ namespace server.Features.Persons
             this.Name = person.Name;
             this.Age = person.Age;
             this.Photo = person.Photo;
+            this.VaccinesCount = person.Vaccines.Count;
         }
 
         public Guid Id { get; set; }
@@ -20,5 +21,7 @@ namespace server.Features.Persons
         public int Age { get; set; }
 
         public string Photo { get; set; }
+
+        public int VaccinesCount { get; set; }
     }
 }

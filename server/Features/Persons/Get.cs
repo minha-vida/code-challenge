@@ -30,6 +30,7 @@ namespace server.Features.Persons
             public async Task<PersonViewModel> Handle(Query request, CancellationToken cancellationToken)
             {
                 var person = await _context.Persons
+                    .Include(p => p.Vaccines)
                     .FirstOrDefaultAsync(p => p.Id == request.PersonId);
 
                 return person != null ? new PersonViewModel(person) : null;

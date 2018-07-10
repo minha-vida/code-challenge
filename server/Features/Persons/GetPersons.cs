@@ -30,8 +30,11 @@ namespace server.Features.Persons
                 _context = context;
             }
 
-            public async Task<IEnumerable<PersonViewModel>> Handle(Query request, CancellationToken cancellationToken) => 
-                await _context.Persons.Select(p => new PersonViewModel(p)).ToListAsync();
+            public async Task<IEnumerable<PersonViewModel>> Handle(Query request, CancellationToken cancellationToken) =>
+                await _context.Persons
+                    .Include(p => p.Vaccines)
+                    .Select(p => new PersonViewModel(p))
+                    .ToListAsync();
         }
     }
 }
