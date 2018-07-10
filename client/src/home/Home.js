@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import Shell from '../layout/Shell'
-
 class Home extends Component {
 
   render() {

@@ -10,8 +10,7 @@ const UserProfile = ({ user }) => {
           id="navbarDropdownUserProfile"
           aria-haspopup="true"
           aria-expanded="false"
-          data-toggle="dropdown"
-          href="#">
+          data-toggle="dropdown">
             Hello! {user.profile.given_name}
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownUserProfile">
