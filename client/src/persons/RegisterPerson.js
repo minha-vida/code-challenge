@@ -99,7 +99,7 @@ class RegisterPerson extends Component {
                 <label htmlFor="validationTooltipUsername">Photo</label>
                 <div className="input-group">
                   <div className="custom-file">
-                    <input onChange={(e) => this.handlePhotoChange(e)} type="file" className="custom-file-input" id="inputGroupFile01" />
+                    <input onChange={(e) => this.handlePhotoChange(e)} type="file" className="custom-file-input" id="inputGroupFile01" required/>
                     <label className="custom-file-label" htmlFor="inputGroupFile01">Choose file</label>
                   </div>
                 </div>
