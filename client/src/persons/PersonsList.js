@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
-class ListPersons extends Component {
+class PersonsList extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -30,10 +30,10 @@ class ListPersons extends Component {
   render() {
     return (
       <div>
-        <h1 className="mt-5 mb-4">Registered Persons</h1>
+        <h1 className="mt-5">Registered Persons</h1>
         <div className="row">
           {this.state.persons.map((p, index) => (
-            <div className="col-4" key={index}>
+            <div className="col-4 mt-4" key={index}>
               <div className="card">
                 <div className="card-body">
                   <div className="text-center">
@@ -62,4 +62,4 @@ const mapStateToProps = state => ({
   idToken: state.oidc.user.id_token
 })
 
-export default connect(mapStateToProps)(withRouter(ListPersons))
+export default connect(mapStateToProps)(withRouter(PersonsList))
