@@ -51,26 +51,24 @@ class PersonDetails extends Component {
     return (
       <div>
         {this.state.deleted && <Redirect to='/persons' />}
-        <h1 className="mt-5 mb-2">Person Details</h1>
-        <hr />
         <div className="row">
-          <div className="col-lg-12 mb-2 justify-content-center text-center">
+          <div className="col mt-5 justify-content-center text-center">
             <img className="rounded-circle" src={this.state.person.photo} width="100px" height="100px" alt="Person Details" />
           </div>
-          <div className="col-lg-10">
-            <label htmlFor="personName">Name</label>
-            <p className="form-control">{this.state.person.name}</p>
-          </div>
-          <div className="col-lg-2">
-            <label htmlFor="personAge">Age</label>
-            <p className="form-control">{this.state.person.age}</p>
-          </div>
         </div>
-        <div className="float-right mt-2" >
-          <Link to={`/persons/${id}/edit`} className="btn btn-primary mr-2">Edit</Link>
-          {/* <button onClick={() => this.handleDeletePerson(p.id)} type="button" className="btn btn-primary m-2">Excluir</button> */}
-          <button type="button" onClick={() => this.handleDeletePerson(id)} className="btn btn-primary mr-2">Delete</button>
-          <Link to="/persons" className="btn btn-primary">Go Back</Link>
+        <h1 className="mt-5 mb-2">
+          {this.state.person.name},
+          <span className="text-muted">{this.state.person.age}</span>
+        </h1>
+        <hr />
+        <div className="row">
+          <div className="col">
+            <div className="float-right mt-2" >
+              <Link to="/persons" className="btn btn-primary mr-2">Go Back</Link>
+              <Link to={`/persons/${id}/edit`} className="btn btn-primary mr-2">Edit</Link>
+              <button type="button" onClick={() => this.handleDeletePerson(id)} className="btn btn-primary">Delete</button>
+            </div>
+          </div>
         </div>
         {this.state.person.id && <PersonVaccines personId={this.state.person.id} />}
       </div>
