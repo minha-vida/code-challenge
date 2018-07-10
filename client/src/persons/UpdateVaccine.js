@@ -106,8 +106,8 @@ class UpdateVaccine extends Component {
               </div>
             </div>
             <div className="float-right" >
-              <Link to={`/persons/${personId}`} className="btn btn-primary mr-2">Go Back</Link>
-              <button className="btn btn-primary" type="submit">Save</button>
+              <Link to={`/persons/${personId}`} className="btn btn-secondary mr-2">Go Back</Link>
+              <button className="btn btn-success" type="submit">Save</button>
             </div>
           </form>
         </div>

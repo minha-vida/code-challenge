@@ -64,9 +64,9 @@ class PersonDetails extends Component {
         <div className="row">
           <div className="col">
             <div className="float-right mt-2" >
-              <Link to="/persons" className="btn btn-primary mr-2">Go Back</Link>
+              <Link to="/persons" className="btn btn-secondary mr-2">Go Back</Link>
               <Link to={`/persons/${id}/edit`} className="btn btn-primary mr-2">Edit</Link>
-              <button type="button" onClick={() => this.handleDeletePerson(id)} className="btn btn-primary">Delete</button>
+              <button type="button" onClick={() => this.handleDeletePerson(id)} className="btn btn-danger">Delete</button>
             </div>
           </div>
         </div>

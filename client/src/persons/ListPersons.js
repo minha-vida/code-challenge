@@ -39,10 +39,12 @@ class ListPersons extends Component {
                   <div className="text-center">
                     <img className="rounded-circle" src={p.photo} width="80px" height="80px" alt="Person Photo" />
                   </div>
-                  <h5 className="card-title">
+                  <h5 className="card-title text-center mt-2">
                     {p.name}, <span className="text-muted">{p.age}</span>
                   </h5>
-                  <Link className="btn btn-primary mr-2" to={`/persons/${p.id}`}>Details</Link>
+                  <div className="text-center">
+                    <Link className="btn btn-outline-primary mr-2" to={`/persons/${p.id}`}>Details</Link>
+                  </div>
                 </div>
                 <div className="card-footer">
                   <p className="card-text"><strong>{p.vaccinesCount}</strong> Vaccines</p>

@@ -85,8 +85,8 @@ class RegisterPersonVaccine extends Component {
             </div>
           </div>
           < div className="row mb-4 mr-1 mt-4 float-right">
-            <Link to={`/persons/${personId}`} className="btn btn-primary mr-2">Go Back</Link>
-            <button type="submit" className="btn btn-primary">Save</button>
+            <Link to={`/persons/${personId}`} className="btn btn-secondary mr-2">Go Back</Link>
+            <button type="submit" className="btn btn-success">Save</button>
           </div>
         </form>
       </div>

@@ -7,7 +7,7 @@ class PersonVaccines extends Component {
 
     return (
       <div className="row justify-content-center mt-4 mb-4">
-        <Link className="btn btn-primary mr-2" to={`/persons/${personId}/vaccines/new`}>Add New Vaccine</Link>
+        <Link className="btn btn-success mr-2" to={`/persons/${personId}/vaccines/new`}>Add New Vaccine</Link>
       </div>
     )
   }

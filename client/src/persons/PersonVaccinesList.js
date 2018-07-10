@@ -56,8 +56,10 @@ class PersonVaccinesList extends Component {
                   {v.name}
                 </h5>
                 <p className="card-text">Applied <strong>{moment(v.appliedAt).format('LL')}</strong></p>
-                <Link className="btn btn-primary mr-2" to={`/persons/${personId}/vaccines/${v.id}/edit`}>Edit</Link>
-                <button type="button" onClick={() => this.handleDeleteVaccine(personId, v.id)} className="btn btn-primary">Delete</button>
+                <div className="text-right">
+                  <Link className="btn btn-outline-primary mr-2" to={`/persons/${personId}/vaccines/${v.id}/edit`}>Edit</Link>
+                  <button type="button" onClick={() => this.handleDeleteVaccine(personId, v.id)} className="btn btn-outline-danger">Delete</button>
+                </div>
               </div>
               <div className="card-footer">
                 <p className="card-text text-muted">Created {moment(v.createdAt).fromNow()}</p>
