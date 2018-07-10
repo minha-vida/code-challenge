@@ -7,9 +7,11 @@ import PersonDetails from '../persons/PersonDetails'
 import UpdatePerson from '../persons/UpdatePerson'
 import UpdateVaccine from '../persons/UpdateVaccine'
 import RegisterPersonVaccine from '../persons/RegisterPersonVaccine'
+import Home from '../home/Home'
 
 const Routes = () => (
   <Switch>
+    <Route path="/" component={Home} />
     <Route exact path="/persons" component={ListPersons} />
     <Route path="/persons/new" component={RegisterPerson} />
     <Route path="/persons/:id/edit" component={UpdatePerson} />
