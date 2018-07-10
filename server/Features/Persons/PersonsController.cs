@@ -5,11 +5,13 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using server.Shared;
 using server.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace server.Features.Persons
 {
 
     [Route("persons")]
+    [Authorize]
     public class PersonsController : Controller
     {
         readonly IMediator _mediator;

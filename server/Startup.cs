@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using MediatR;
 using server.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace server
 {
@@ -39,6 +40,17 @@ namespace server
                     options.UseSqlServer(connectionString);
                 });
 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(bearer =>
+            {
+                bearer.Authority = "https://accounts.google.com/";
+                bearer.RequireHttpsMetadata = false;
+                bearer.Audience = "820531171267-jeq714dtog6uivk8r0kvcoaid2t8o191.apps.googleusercontent.com";
+            });
+
             services
                 .AddMvc()
                 .AddFeatureFolders();
@@ -59,7 +71,8 @@ namespace server
                 .AllowAnyHeader()
                 .AllowAnyMethod()
             );
-            // app.UseAuthentication();
+
+            app.UseAuthentication();
             app.UseMvc();
             app.UseWelcomePage();
         }
