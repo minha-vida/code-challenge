@@ -11,7 +11,7 @@ class PersonVaccines extends Component {
           <h2 className="ml-3">Vaccines</h2>
         </div>
         <div>
-          <AddPersonVaccine personId={this.props.personId} />
+          <AddPersonVaccine personId={this.props.id} />
           <PersonVaccinesList {...this.props} />
         </div>
       </div>

@@ -12,7 +12,7 @@ class PersonVaccinesList extends Component {
   }
 
   listVacinnes() {
-    const id = this.props.personId
+    const { id } = this.props
 
     fetch(`http://localhost:5000/persons/${id}/vaccines`, {
       headers: {
@@ -45,22 +45,22 @@ class PersonVaccinesList extends Component {
   }
 
   render() {
-    const personId = this.props.personId
+    const { id: personId } = this.props
     return (
       <div className="row">
         {this.state.vaccines.map((v, index) => (
           <div className="col-md-4 mb-4" key={index}>
             <div className="card">
-              <div className="card-header">
-                <h5 className="card-title">{v.name}</h5>
-              </div>
               <div className="card-body">
-                <p className="card-text">Applied: {moment(v.appliedAt).format('LL')}</p>
-                <p className="card-text text-muted">Created {moment(v.createdAt).fromNow()}</p>
+                <h5 className="card-title">
+                  {v.name}
+                </h5>
+                <p className="card-text">Applied <strong>{moment(v.appliedAt).format('LL')}</strong></p>
                 <Link className="btn btn-primary mr-2" to={`/persons/${personId}/vaccines/${v.id}/edit`}>Edit</Link>
                 <button type="button" onClick={() => this.handleDeleteVaccine(personId, v.id)} className="btn btn-primary">Delete</button>
               </div>
               <div className="card-footer">
+                <p className="card-text text-muted">Created {moment(v.createdAt).fromNow()}</p>
                 <p className="card-text text-muted">Updated {moment(v.updatedAt).fromNow()}</p>
               </div>
             </div>

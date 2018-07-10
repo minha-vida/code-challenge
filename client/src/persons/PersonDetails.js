@@ -58,7 +58,7 @@ class PersonDetails extends Component {
         </div>
         <h1 className="mt-5 mb-2">
           {this.state.person.name},
-          <span className="text-muted">{this.state.person.age}</span>
+          <span className="text-muted"> {this.state.person.age}</span>
         </h1>
         <hr />
         <div className="row">
@@ -70,7 +70,7 @@ class PersonDetails extends Component {
             </div>
           </div>
         </div>
-        {this.state.person.id && <PersonVaccines personId={this.state.person.id} />}
+        {this.state.person.id && <PersonVaccines {...this.state.person} />}
       </div>
     )
   }

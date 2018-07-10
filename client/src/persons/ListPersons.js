@@ -30,28 +30,28 @@ class ListPersons extends Component {
   render() {
     return (
       <div>
-        <h1 className="mt-5 mb-2">Registered Persons</h1>
-        <table className="table mt-2">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Name</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.persons.map((p, index) => (
-              <tr key={index}>
-                <td>{p.id}</td>
-                <td>{p.name}</td>
-                <td className="text-right">
-                  <Link className="m-2" to={`/persons/${p.id}`}>Details</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div >
+        <h1 className="mt-5 mb-4">Registered Persons</h1>
+        <div className="row">
+          {this.state.persons.map((p, index) => (
+            <div className="col-4" key={index}>
+              <div className="card">
+                <div className="card-body">
+                  <div className="text-center">
+                    <img className="rounded-circle" src={p.photo} width="80px" height="80px" alt="Person Photo" />
+                  </div>
+                  <h5 className="card-title">
+                    {p.name}, <span className="text-muted">{p.age}</span>
+                  </h5>
+                  <Link className="btn btn-primary mr-2" to={`/persons/${p.id}`}>Details</Link>
+                </div>
+                <div className="card-footer">
+                  <p className="card-text"><strong>{p.vaccinesCount}</strong> Vaccines</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     )
   }
 }
