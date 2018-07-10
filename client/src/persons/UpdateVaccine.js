@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import moment from 'moment'
 
 class UpdateVaccine extends Component {
   constructor(props) {
@@ -101,7 +102,7 @@ class UpdateVaccine extends Component {
               </div>
               <div className="col-md-4 mb-3">
                 <label htmlFor="validationTooltip02">AppliedAt</label>
-                <input onChange={(e) => this.handleChangeVaccineAppliedAt(e)} value={this.state.vaccine.appliedAt} type="text" className="form-control" id="validationTooltip02" placeholder="YYYY-MM-DD" required />
+                <input onChange={(e) => this.handleChangeVaccineAppliedAt(e)} value={moment(this.state.vaccine.appliedAt).format('YYYY-MM-DD')} type="date" className="form-control" id="validationTooltip02" placeholder="YYYY-MM-DD" required />
               </div>
             </div>
             <div className="float-right" >
