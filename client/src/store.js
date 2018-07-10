@@ -3,15 +3,19 @@ import { routerMiddleware } from 'react-router-redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import createHistory from 'history/createBrowserHistory'
+import createOidcMiddleware, { } from 'redux-oidc'
 
+import { userManager } from './auth'
 import reducer from './rootReducer'
+
+const oidcMiddleware = createOidcMiddleware(userManager)
 
 const initialState = { }
 
 const history = createHistory()
 
 const createStoreWithMiddlewares = compose(
-  applyMiddleware(routerMiddleware(history))
+  applyMiddleware(oidcMiddleware, routerMiddleware(history))
 )(createStore)
 
 const persistConfig = {

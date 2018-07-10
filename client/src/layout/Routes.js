@@ -8,16 +8,20 @@ import UpdatePerson from '../persons/UpdatePerson'
 import UpdateVaccine from '../persons/UpdateVaccine'
 import RegisterPersonVaccine from '../persons/RegisterPersonVaccine'
 import Home from '../home/Home'
+import { Login, Logout, Callback, PrivateRoute } from '../auth'
 
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
-    <Route exact path="/persons" component={ListPersons} />
-    <Route path="/persons/new" component={RegisterPerson} />
-    <Route path="/persons/:id/edit" component={UpdatePerson} />
-    <Route path="/persons/:id/vaccines/new" component={RegisterPersonVaccine} />
-    <Route path="/persons/:id/vaccines/:vaccineId/edit" component={UpdateVaccine} />
-    <Route path="/persons/:id" component={PersonDetails} />
+    <Route path="/auth/login" component={Login} />
+    <Route path="/auth/logout" component={Logout} />
+    <Route path="/auth/callback" component={Callback} />
+    <PrivateRoute exact path="/persons" component={ListPersons} />
+    <PrivateRoute path="/persons/new" component={RegisterPerson} />
+    <PrivateRoute path="/persons/:id/edit" component={UpdatePerson} />
+    <PrivateRoute path="/persons/:id/vaccines/new" component={RegisterPersonVaccine} />
+    <PrivateRoute path="/persons/:id/vaccines/:vaccineId/edit" component={UpdateVaccine} />
+    <PrivateRoute path="/persons/:id" component={PersonDetails} />
   </Switch>
 )
 
