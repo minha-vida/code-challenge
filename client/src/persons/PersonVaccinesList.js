@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class PersonVaccinesList extends Component {
   constructor(props) {
@@ -32,6 +34,10 @@ class PersonVaccinesList extends Component {
     this.listVacinnes()
   }
 
+  notify = () => toast.success("The Vaccine has been deleted!", {
+    position: toast.POSITION.TOP_CENTER
+  })
+
   handleDeleteVaccine(personId, vaccineId) {
     fetch(`http://localhost:5000/persons/${personId}/vaccines/${vaccineId}`, {
       headers: {
@@ -40,6 +46,7 @@ class PersonVaccinesList extends Component {
       method: 'DELETE'
     })
       .then(deleted => {
+        this.notify()
         this.listVacinnes()
       }).catch(error => console.error(`Fetch Error =\n`, error))
   }
@@ -59,6 +66,7 @@ class PersonVaccinesList extends Component {
                 <div className="text-right">
                   <Link className="btn btn-outline-primary mr-2" to={`/persons/${personId}/vaccines/${v.id}/edit`}>Edit</Link>
                   <button type="button" onClick={() => this.handleDeleteVaccine(personId, v.id)} className="btn btn-outline-danger">Delete</button>
+                  <ToastContainer autoClose={2000}/>
                 </div>
               </div>
               <div className="card-footer">
