@@ -47,21 +47,27 @@ class PersonVaccinesList extends Component {
   render() {
     const personId = this.props.personId
     return (
-      <div>
+      <div className="row">
         {this.state.vaccines.map((v, index) => (
-          <div className="card mb-2" key={index} style={{ width: '100%' }}>
-            <div className="card-body">
-              <h5 className="card-title">{v.name}</h5>
-              <hr />
-              <h6 className="card-subtitle mb-2 text-muted">AppliedAt: {moment(v.appliedAt).format('DD/MM/YYYY')}</h6>
-              <p className="card-text">CreatedAt: {moment(v.createdAt).format('DD/MM/YYYY')}</p>
-              <p className="card-text">UpdatedAt: {moment(v.updatedAt).format('DD/MM/YYYY')}</p>
-              <Link className="btn btn-primary mr-2" to={`/persons/${personId}/vaccines/${v.id}/edit`}>Edit</Link>
-              <button type="button" onClick={() => this.handleDeleteVaccine(personId, v.id)} className="btn btn-primary">Delete</button>
+          <div className="col-md-4 mb-4" key={index}>
+            <div className="card">
+              <div className="card-header">
+                <h5 className="card-title">{v.name}</h5>
+              </div>
+              <div className="card-body">
+                <p className="card-text">Applied: {moment(v.appliedAt).format('LL')}</p>
+                <p className="card-text text-muted">Created {moment(v.createdAt).fromNow()}</p>
+                <Link className="btn btn-primary mr-2" to={`/persons/${personId}/vaccines/${v.id}/edit`}>Edit</Link>
+                <button type="button" onClick={() => this.handleDeleteVaccine(personId, v.id)} className="btn btn-primary">Delete</button>
+              </div>
+              <div className="card-footer">
+                <p className="card-text text-muted">Updated {moment(v.updatedAt).fromNow()}</p>
+              </div>
             </div>
           </div>
         ))}
       </div>
+
     )
   }
 }
