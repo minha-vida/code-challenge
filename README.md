@@ -4,48 +4,48 @@
  ```
  git clone https://github.com/rnataoliveira/code-challenge
  ```
- # Server
+ ## Server
 
-  Go to the server folder
+  **Go to the server folder**  
  ```
  cd challenge/server
  ```
- Open the file appsettings.json and set a valid value for the string  
+ **Open the file appsettings.json and set a valid value for the string**  
  ```json
 "ConnectionStrings": {
       "DefaultConnection": "Server=localhost;Database=challenge;User Id=sa;Password=P@55w0rd"
   }
 ```
 
-Restore packages
+**Restore packages**  
  ```  
  dotnet restore
  ```
 
-Apply Migrations
+**Apply Migrations**  
 ```
 dotnet ef database update
 ```
 
-Run
+**Run**  
  ``` 
  dotnet run  
  ```
 
- # Client
+ ## Client
 
- Go to client folder
+ **Go to client folder**  
 
  ```
 cd challenge/client
 ```
 
-Install packages
+**Install packages** 
 ```
 npm install
 ```
 
-Run
+**Run**  
 ``` 
 npm start
 ```  
