@@ -20,7 +20,9 @@ class Home extends Component {
 
   render() {
     return (
-      <article className="mt-2" dangerouslySetInnerHTML={{__html: this.state.readme}}></article>
+      <div className="card mt-4">
+        <article className="card-body mt-2" dangerouslySetInnerHTML={{ __html: this.state.readme }}></article>
+      </div>
     )
   }
 }
