@@ -6,6 +6,9 @@ namespace server.Models
 {
     public class Person
     {
+        [Required]
+        public string OwnerId { get; set; }
+
         public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]

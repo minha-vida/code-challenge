@@ -19,6 +19,9 @@ namespace server.Features.Persons
         public class Query : IRequest<IEnumerable<PersonViewModel>>
         {
             public string Q { get; set; }
+
+            [Required]
+            public string OwnerId { get; set; }
         }
 
         public class Handler : IRequestHandler<Query, IEnumerable<PersonViewModel>>
@@ -32,6 +35,7 @@ namespace server.Features.Persons
 
             public async Task<IEnumerable<PersonViewModel>> Handle(Query request, CancellationToken cancellationToken) =>
                 await _context.Persons
+                    .Where(p => p.OwnerId == request.OwnerId)
                     .Include(p => p.Vaccines)
                     .Select(p => new PersonViewModel(p))
                     .ToListAsync();

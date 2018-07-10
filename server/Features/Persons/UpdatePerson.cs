@@ -19,6 +19,9 @@ namespace server.Features.Persons
     {
         public class Command : IRequest<CommandResult<Person>>
         {
+            [Required]
+            public string OwnerId { get; set; }
+
             public Guid PersonId { get; set; }
 
             [Required]
@@ -46,6 +49,7 @@ namespace server.Features.Persons
             public async Task<CommandResult<Person>> Handle(Command command, CancellationToken cancellationToken)
             {
                 Person person = await _dbContext.Persons
+                    .Where(p => p.OwnerId == command.OwnerId)
                     .FirstOrDefaultAsync(p => p.Id == command.PersonId);
 
                 if (person == null)

@@ -18,6 +18,9 @@ namespace server.Features.Persons
     {
         public class Command : IRequest<CommandResult<Guid>>
         {
+            [Required]
+            public string OwnerId { get; set; }
+
             public Guid PersonId { get; set; }
 
             [Required]
@@ -41,8 +44,12 @@ namespace server.Features.Persons
             public async Task<CommandResult<Guid>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var person = _dbContext.Persons
+                    .Where(p => p.OwnerId == request.OwnerId)
                     .Include(p => p.Vaccines)
                     .FirstOrDefault(p => p.Id == request.PersonId);
+
+                if(person == null)
+                    return CommandResult<Guid>.Fail("Person Not Found");
 
                 var vaccine = new Vaccine
                 {

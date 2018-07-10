@@ -18,6 +18,9 @@ namespace server.Features.Persons
         public class Command : IRequest<CommandResult<Guid>>
         {
             [Required]
+            public string OwnerId { get; set; }
+
+            [Required]
             public string Name { get; set; }
 
             [Required]
@@ -43,6 +46,7 @@ namespace server.Features.Persons
             {
                 var person = new Person
                 {
+                    OwnerId = request.OwnerId,
                     Name = request.Name,
                     Age = request.Age,
                     Photo = request.Photo

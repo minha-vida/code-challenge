@@ -7,6 +7,7 @@ using server.Shared;
 using server.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace server.Features.Persons
 {
@@ -14,7 +15,13 @@ namespace server.Features.Persons
     {
         public class Command : IRequest<CommandResult>
         {
+            [Required]
+            public string OwnerId { get; set; }
+
+            [Required]
             public Guid PersonId { get; set; }
+
+            [Required]
             public Guid? VaccineId { get; set; }
         }
 
@@ -32,12 +39,13 @@ namespace server.Features.Persons
             public async Task<CommandResult> Handle(Command command, CancellationToken cancellationToken)
             {
                 Person person = await _dbContext.Persons
+                    .Where(p => p.OwnerId == command.OwnerId)
                     .Include(p => p.Vaccines)
                     .FirstOrDefaultAsync(p => p.Id == command.PersonId);
-                    
+
                 var vaccine = person.Vaccines
                     .FirstOrDefault(v => v.Id == command.VaccineId);
-                    
+
                 person.Vaccines.Remove(vaccine);
 
                 await _dbContext.SaveChangesAsync();

@@ -6,13 +6,19 @@ using server.Data;
 using server.Shared;
 using server.Models;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace server.Features.Persons
 {
-    public class DeletPerson
+    public class DeletePerson
     {
         public class Command : IRequest<CommandResult>
-        {
+        {   
+            [Required]
+            public string OwnerId { get; set; }
+
+            [Required]
             public Guid? PersonId { get; set; }
         }
 
@@ -29,6 +35,7 @@ namespace server.Features.Persons
             public async Task<CommandResult> Handle(Command deletePerson, CancellationToken cancellationToken)
             {
                 Person person = await _dbContext.Persons
+                    .Where(p => p.OwnerId == deletePerson.OwnerId)
                     .FirstOrDefaultAsync(p => p.Id == deletePerson.PersonId);
 
                 if (person == null)

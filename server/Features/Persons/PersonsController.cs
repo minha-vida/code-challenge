@@ -26,7 +26,11 @@ namespace server.Features.Persons
         public async Task<IActionResult> CreatePerson(
             [FromBody] CreatePerson.Command command)
         {
-            if (!ModelState.IsValid)
+            ModelState.Clear();
+
+            command.OwnerId = User.Identity.Name;
+
+            if (!TryValidateModel(command))
                 return BadRequest(ModelState);
 
             CommandResult<Guid> result = await _mediator.Send(command);
@@ -39,6 +43,13 @@ namespace server.Features.Persons
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] GetPersons.Query query)
         {
+            ModelState.Clear();
+
+            query.OwnerId = User.Identity.Name;
+
+            if (!TryValidateModel(query))
+                return BadRequest(ModelState);
+
             IEnumerable<PersonViewModel> persons = await _mediator.Send(query);
 
             return Ok(persons);
@@ -47,6 +58,13 @@ namespace server.Features.Persons
         [Route("{personId}")]
         public async Task<IActionResult> GetPersonById(Get.Query query)
         {
+            ModelState.Clear();
+
+            query.OwnerId = User.Identity.Name;
+
+            if (!TryValidateModel(query))
+                return BadRequest(ModelState);
+
             var person = await _mediator.Send(query);
             if (person == null)
                 return NotFound();
@@ -56,8 +74,12 @@ namespace server.Features.Persons
         [Route("{personId}")]
         [HttpDelete]
         public async Task<IActionResult> Delete(
-            [FromRoute] DeletPerson.Command command)
+            [FromRoute] DeletePerson.Command command)
         {
+            ModelState.Clear();
+
+            command.OwnerId = User.Identity.Name;
+
             if (!TryValidateModel(command))
                 return BadRequest(ModelState);
 
@@ -78,6 +100,7 @@ namespace server.Features.Persons
             ModelState.Clear();
 
             command.PersonId = personId;
+            command.OwnerId = User.Identity.Name;
 
             if (!TryValidateModel(command))
                 return BadRequest(ModelState);
@@ -102,8 +125,9 @@ namespace server.Features.Persons
             ModelState.Clear();
 
             command.PersonId = personId;
+            command.OwnerId = User.Identity.Name;
 
-            if (!ModelState.IsValid)
+            if (!TryValidateModel(command))
                 return BadRequest(ModelState);
 
             CommandResult<Guid> result = await _mediator.Send(command);
@@ -119,6 +143,10 @@ namespace server.Features.Persons
             ModelState.Clear();
 
             query.PersonId = personId;
+            query.OwnerId = User.Identity.Name;
+
+            if (!TryValidateModel(query))
+                return BadRequest(ModelState);
 
             IEnumerable<Models.Vaccine> vaccines = await _mediator.Send(query);
 
@@ -140,6 +168,7 @@ namespace server.Features.Persons
 
             command.PersonId = personId;
             command.VaccineId = vaccineId;
+            command.OwnerId = User.Identity.Name;
 
             if (!TryValidateModel(command))
                 return BadRequest(ModelState);
@@ -163,6 +192,7 @@ namespace server.Features.Persons
 
             command.PersonId = personId;
             command.VaccineId = vaccineId;
+            command.OwnerId = User.Identity.Name;
 
             if (!TryValidateModel(command))
                 return BadRequest(ModelState);
@@ -189,6 +219,10 @@ namespace server.Features.Persons
 
             query.PersonId = personId;
             query.VaccineId = vaccineId;
+            query.OwnerId = User.Identity.Name;
+
+            if (!TryValidateModel(query))
+                return BadRequest(ModelState);
 
             var vaccine = await _mediator.Send(query);
             if (vaccine == null)

@@ -14,6 +14,7 @@ using MediatR;
 using server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace server
 {
@@ -49,6 +50,9 @@ namespace server
                 bearer.Authority = "https://accounts.google.com/";
                 bearer.RequireHttpsMetadata = false;
                 bearer.Audience = "820531171267-jeq714dtog6uivk8r0kvcoaid2t8o191.apps.googleusercontent.com";
+                bearer.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters {
+                    NameClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+                };
             });
 
             services

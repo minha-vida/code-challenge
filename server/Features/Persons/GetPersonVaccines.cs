@@ -18,6 +18,10 @@ namespace server.Features.Persons
     {
         public class Query : IRequest<IEnumerable<Vaccine>>
         {
+            [Required]
+            public string OwnerId { get; set; }
+
+            [Required]
             public Guid PersonId { get; set; }
         }
 
@@ -33,6 +37,7 @@ namespace server.Features.Persons
             public async Task<IEnumerable<Vaccine>> Handle(Query request, CancellationToken cancellationToken)
             {
                 Person person = await _context.Persons
+                    .Where(p => p.OwnerId == request.OwnerId)
                     .Include(p => p.Vaccines)
                     .FirstOrDefaultAsync(p => p.Id == request.PersonId);
 
