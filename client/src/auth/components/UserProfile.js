@@ -12,17 +12,17 @@ const UserProfile = ({ user }) => {
           aria-expanded="false"
           data-toggle="dropdown"
           href="#">
-            Olá! {user.profile.given_name}
+            Hello! {user.profile.given_name}
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownUserProfile">
-          <Link to='/auth/logout' className="dropdown-item">Sair</Link>
+          <Link to='/auth/logout' className="dropdown-item">Logout</Link>
         </div>
       </li>
     </ul>
   )
 
   const login = () => (
-    <Link to='/auth/login' className='btn btn-primary my-2 my-sm-0' >Entrar</Link>
+    <Link to='/auth/login' className='btn btn-light my-2 my-sm-0'>Login</Link>
   )
 
   return user ? welcome() : login()

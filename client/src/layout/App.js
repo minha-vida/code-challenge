@@ -15,7 +15,7 @@ const App = () => (
         <OidcProvider store={store} userManager={userManager}>
             <PersistGate loading={null} persistor={persistor}>
                 <ConnectedRouter history={history}>
-                    <Shell />
+                    <Route path='/' component={Shell} />
                 </ConnectedRouter>
             </PersistGate>
         </OidcProvider>
