@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
 
 class RegisterPerson extends Component {
   constructor(props) {
@@ -63,10 +64,12 @@ class RegisterPerson extends Component {
       body: JSON.stringify(this.state.person)
     })
       .then(response => response.json())
-      .then(registered =>
+      .then(_ => {
         this.setState({
           registered: true
-        }))
+        })
+        toastr.success('Created', 'The person has been created!')
+      })
       .catch(error => console.error(`Fetch Error =\n`, error))
 
     this.setState({

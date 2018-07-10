@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
 
 import PersonVaccines from './PersonVaccines';
 
@@ -38,10 +39,12 @@ class PersonDetails extends Component {
       },
       method: 'DELETE'
     })
-      .then(deleted =>
+      .then(_ => {
+        toastr.success('Deleted', 'The person has been deleted!')
         this.setState({
           deleted: true
-        }))
+        })
+      })
       .catch(error => console.error(`Fetch Error =\n`, error))
   }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import { toastr } from 'react-redux-toastr'
 
 class UpdateVaccine extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class UpdateVaccine extends Component {
             appliedAt: vaccine.appliedAt
           }
         }))
-        .catch(error => console.error(`Fetch Error =\n`, error))
+      .catch(error => console.error(`Fetch Error =\n`, error))
   }
 
   handleChangeVaccineName(event) {
@@ -71,10 +72,12 @@ class UpdateVaccine extends Component {
       body: JSON.stringify(this.state.vaccine)
     })
       .then(response => response.json())
-      .then(updated =>
+      .then(_ => {
         this.setState({
           updated: true
-        }))
+        })
+        toastr.success('Updated', 'The vaccine has been updated!')
+      })
       .catch(error => console.error(`Fetch Error =\n`, error))
 
     this.setState({

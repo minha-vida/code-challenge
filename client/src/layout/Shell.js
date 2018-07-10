@@ -7,6 +7,7 @@ import Routes from './Routes'
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 
 class Shell extends Component {
 

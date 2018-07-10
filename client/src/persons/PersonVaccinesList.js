@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import {toastr} from 'react-redux-toastr'
 
 class PersonVaccinesList extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class PersonVaccinesList extends Component {
     })
       .then(deleted => {
         this.listVacinnes()
+        toastr.success('Deleted', 'The vaccine has been deleted!')
       }).catch(error => console.error(`Fetch Error =\n`, error))
   }
 

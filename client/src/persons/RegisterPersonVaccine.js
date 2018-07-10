@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
 
 class RegisterPersonVaccine extends Component {
   constructor(props) {
@@ -48,10 +49,12 @@ class RegisterPersonVaccine extends Component {
       body: JSON.stringify(this.state.vaccine)
     })
       .then(response => response.json())
-      .then(registered =>
+      .then(_ => {
         this.setState({
           registered: true
-        }))
+        })
+        toastr.success('Created', 'The vaccine has been created!')
+      })
       .catch(error => console.error(`Fetch Error =\n`, error))
 
     this.setState({

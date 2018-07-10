@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
 
 class UpdatePerson extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class UpdatePerson extends Component {
             photo: person.photo
           }
         }))
-        .catch(error => console.error(`Fetch Error =\n`, error))
+      .catch(error => console.error(`Fetch Error =\n`, error))
   }
 
   handleNameChange(event) {
@@ -86,10 +87,12 @@ class UpdatePerson extends Component {
       body: JSON.stringify(this.state.person)
     })
       .then(response => response.json())
-      .then(updated =>
+      .then(_ => {
         this.setState({
           updated: true
-        }))
+        })
+        toastr.success('Updated', 'The person has been updated!')
+      })
       .catch(error => console.error(`Fetch Error =\n`, error))
 
     this.setState({
@@ -106,7 +109,7 @@ class UpdatePerson extends Component {
 
     return (
       <div>
-        {this.state.updated && <Redirect to={`/persons/${personId}`}/> }
+        {this.state.updated && <Redirect to={`/persons/${personId}`} />}
         <div className="container">
           <h1 className="mt-5 mb-2">Update Person</h1>
           <hr />
