@@ -11,9 +11,9 @@ namespace server.Models
 
         public DateTime AppliedAt { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         [JsonIgnore]
         public virtual Person Person { get; set; }
