@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
 
 class ListPersons extends Component {
   constructor(props) {
@@ -12,7 +13,11 @@ class ListPersons extends Component {
 
   // Component Will Mount, then, when it's mounted it will do the fetch API
   componentDidMount() {
-    fetch('http://localhost:5000/persons')
+    fetch('http://localhost:5000/persons', {
+      headers: {
+        Authorization: `Bearer ${this.props.idToken}`
+      }
+    })
       .then(response => response.json())
       .then(persons => {
         this.setState({
@@ -51,4 +56,8 @@ class ListPersons extends Component {
   }
 }
 
-export default withRouter(ListPersons)
+const mapStateToProps = state => ({
+  idToken: state.oidc.user.id_token
+})
+
+export default connect(mapStateToProps)(withRouter(ListPersons))

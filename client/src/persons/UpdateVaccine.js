@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class UpdateVaccine extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class UpdateVaccine extends Component {
     fetch(`http://localhost:5000/persons/${personId}/vaccines/${vaccineId}`, {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${this.props.idToken}`,
         "Content-Type": "application/json; charset=utf-8",
       }
     })
@@ -62,6 +64,7 @@ class UpdateVaccine extends Component {
       method: 'PUT',
       mode: 'cors',
       headers: {
+        Authorization: `Bearer ${this.props.idToken}`,
         "Content-Type": "application/json; charset=utf-8",
       },
       body: JSON.stringify(this.state.vaccine)
@@ -112,4 +115,8 @@ class UpdateVaccine extends Component {
   }
 }
 
-export default UpdateVaccine
+const mapStateToProps = state => ({
+  idToken: state.oidc.user.id_token
+})
+
+export default connect(mapStateToProps)(UpdateVaccine)

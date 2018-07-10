@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
 
 class RegisterPerson extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class RegisterPerson extends Component {
       method: 'POST',
       mode: 'cors',
       headers: {
+        Authorization: `Bearer ${this.props.idToken}`,
         "Content-Type": "application/json; charset=utf-8",
       },
       body: JSON.stringify(this.state.person)
@@ -114,4 +116,8 @@ class RegisterPerson extends Component {
   }
 }
 
-export default RegisterPerson
+const mapStateToProps = state => ({
+  idToken: state.oidc.user.id_token
+})
+
+export default connect(mapStateToProps)(RegisterPerson)

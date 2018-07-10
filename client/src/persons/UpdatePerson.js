@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class UpdatePerson extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class UpdatePerson extends Component {
     fetch(`http://localhost:5000/persons/${personId}`, {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${this.props.idToken}`,
         "Content-Type": "application/json; charset=utf-8",
       }
     })
@@ -78,6 +80,7 @@ class UpdatePerson extends Component {
       method: 'PUT',
       mode: 'cors',
       headers: {
+        Authorization: `Bearer ${this.props.idToken}`,
         "Content-Type": "application/json; charset=utf-8",
       },
       body: JSON.stringify(this.state.person)
@@ -137,5 +140,8 @@ class UpdatePerson extends Component {
     )
   }
 }
+const mapStateToProps = state => ({
+  idToken: state.oidc.user.id_token
+})
 
-export default UpdatePerson
+export default connect(mapStateToProps)(UpdatePerson)

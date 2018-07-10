@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
 
 import PersonVaccines from './PersonVaccines';
 
@@ -16,7 +17,11 @@ class PersonDetails extends Component {
   componentDidMount() {
     const id = this.props.match.params.id
 
-    fetch(`http://localhost:5000/persons/${id}`)
+    fetch(`http://localhost:5000/persons/${id}`, {
+      headers: {
+        Authorization: `Bearer ${this.props.idToken}`
+      }
+    })
       .then(response => response.json())
       .then(person => {
         this.setState({
@@ -28,6 +33,9 @@ class PersonDetails extends Component {
 
   handleDeletePerson(id) {
     fetch(`http://localhost:5000/persons/${id}`, {
+      headers: {
+        Authorization: `Bearer ${this.props.idToken}`
+      },
       method: 'DELETE'
     })
       .then(deleted =>
@@ -70,4 +78,9 @@ class PersonDetails extends Component {
   }
 }
 
-export default PersonDetails
+
+const mapStateToProps = state => ({
+  idToken: state.oidc.user.id_token
+})
+
+export default connect(mapStateToProps)(PersonDetails)

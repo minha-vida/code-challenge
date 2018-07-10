@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class PersonVaccinesList extends Component {
   constructor(props) {
@@ -12,8 +13,12 @@ class PersonVaccinesList extends Component {
 
   listVacinnes() {
     const id = this.props.personId
-    
-    fetch(`http://localhost:5000/persons/${id}/vaccines`)
+
+    fetch(`http://localhost:5000/persons/${id}/vaccines`, {
+      headers: {
+        Authorization: `Bearer ${this.props.idToken}`
+      }
+    })
       .then(response => response.json())
       .then(vaccines => {
         this.setState({
@@ -29,6 +34,9 @@ class PersonVaccinesList extends Component {
 
   handleDeleteVaccine(personId, vaccineId) {
     fetch(`http://localhost:5000/persons/${personId}/vaccines/${vaccineId}`, {
+      headers: {
+        Authorization: `Bearer ${this.props.idToken}`
+      },
       method: 'DELETE'
     })
       .then(deleted => {
@@ -57,5 +65,8 @@ class PersonVaccinesList extends Component {
     )
   }
 }
+const mapStateToProps = state => ({
+  idToken: state.oidc.user.id_token
+})
 
-export default PersonVaccinesList
+export default connect(mapStateToProps)(PersonVaccinesList)

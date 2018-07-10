@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class RegisterPersonVaccine extends Component {
   constructor(props) {
@@ -41,7 +42,8 @@ class RegisterPersonVaccine extends Component {
       method: 'POST',
       mode: 'cors',
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
+        Authorization: `Bearer ${this.props.idToken}`,
+        "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify(this.state.vaccine)
     })
@@ -51,7 +53,7 @@ class RegisterPersonVaccine extends Component {
           registered: true
         }))
       .catch(error => console.error(`Fetch Error =\n`, error))
-      
+
     this.setState({
       vaccine: {
         name: '',
@@ -74,11 +76,11 @@ class RegisterPersonVaccine extends Component {
             <div className="row mt-2">
               <div className="col-sm-8">
                 <label htmlFor="vaccineName">Name</label>
-                <input onChange={(e) => this.handleChangeVaccineName(e)} value={this.state.vaccine.name} type="text" className="form-control" placeholder="Vaccine Name" required/>
+                <input onChange={(e) => this.handleChangeVaccineName(e)} value={this.state.vaccine.name} type="text" className="form-control" placeholder="Vaccine Name" required />
               </div>
               <div className="col-sm-4">
                 <label htmlFor="dependentDocumentNumber">AppliedAt</label>
-                <input onChange={(e) => this.handleChangeVaccineAppliedAt(e)} value={this.state.vaccine.appliedAt} type="text" className="form-control" placeholder="YYYY-MM-DD" required/>
+                <input onChange={(e) => this.handleChangeVaccineAppliedAt(e)} value={this.state.vaccine.appliedAt} type="text" className="form-control" placeholder="YYYY-MM-DD" required />
               </div>
             </div>
           </div>
@@ -92,4 +94,8 @@ class RegisterPersonVaccine extends Component {
   }
 }
 
-export default RegisterPersonVaccine
+const mapStateToProps = state => ({
+  idToken: state.oidc.user.id_token
+})
+
+export default connect(mapStateToProps)(RegisterPersonVaccine)
