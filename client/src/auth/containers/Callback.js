@@ -14,7 +14,7 @@ const Callback = ({ redirect }) => (
       console.error(error)
     }}>
     <div className="col text-center mt-5">
-      <img src={spinner} width="150px" />
+      <img src={spinner} width="150px" alt="Loading Spinner" />
     </div>
   </CallbackComponent>
 )

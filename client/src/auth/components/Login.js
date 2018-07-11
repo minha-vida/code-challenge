@@ -23,7 +23,7 @@ class Login extends Component {
       <div className="row">
         {this.state.loading &&
           <div className="col text-center mt-5">
-            <img src={spinner} width="150px" />
+            <img src={spinner} width="150px" alt="Loading Spinner"/>
           </div>}
       </div>
     )

@@ -41,14 +41,14 @@ class PersonsList extends Component {
         <div className="row">
           {this.state.loading &&
             <div className="col text-center mt-5">
-              <img src={spinner} width="150px" />
+              <img src={spinner} width="150px" alt="Loading Spinner" />
             </div>}
           {!this.state.loading && this.state.persons.map((p, index) => (
             <div className="col-lg-4 col-md-6 mt-4" key={index}>
               <div className="card">
                 <div className="card-body">
                   <div className="text-center">
-                    <img className="rounded-circle" src={p.photo} width="80px" height="80px" alt="Person Photo" />
+                    <img className="rounded-circle" src={p.photo} width="80px" height="80px" alt="Person Avatar" />
                   </div>
                   <h5 className="card-title text-center mt-2">
                     {p.name}, <span className="text-muted">{p.age}</span>

@@ -59,7 +59,7 @@ class PersonVaccinesList extends Component {
       <div className="row">
         {this.state.loading &&
           <div className="col text-center mt-5">
-            <img src={spinner} width="150px" />
+            <img src={spinner} width="150px" alt="Loading Spinner" />
           </div>}
         {!this.state.loading && this.state.vaccines.map((v, index) => (
           <div className="col-lg-4 col-md-6 mb-4" key={index}>
