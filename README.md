@@ -56,13 +56,13 @@ npm start
 ## Some Screenshots
 
 **Registered Persons**  
-![Registered Persons](docs/RegisteredPersons.png?raw=true)
+![Registered Persons](https://github.com/rnataoliveira/code-challenge/blob/master/docs/RegisterPerson.png)
 
 **Person Details**  
-![Person Details](docs/PersonDetails.png)
+![Person Details](https://github.com/rnataoliveira/code-challenge/blob/master/docs/PersonDetails.png)
 
 **Register Person**
-![Register Person](/docs/RegisterPerson.png)
+![Register Person](https://github.com/rnataoliveira/code-challenge/blob/master/docs/RegisteredPersons.png)
 
 
 # Code Challenge EN-US
