@@ -56,13 +56,13 @@ npm start
 ## Some Screenshots
 
 **Registered Persons**  
-![Registered Persons](https://raw.githubusercontent.com/rnataoliveira/code-challenge/master/docs/RegisteredPersons.png)
+![Registered Persons](https://raw.githubusercontent.com/rnataoliveira/code-challenge/master/docs/RegisteredPersons.png){: max-width="100%"}
 
 **Person Details**  
-![Person Details](https://raw.githubusercontent.com/rnataoliveira/code-challenge/master/docs/PersonDetails.png)
+![Person Details](https://raw.githubusercontent.com/rnataoliveira/code-challenge/master/docs/PersonDetails.png){: max-width="100%"}
 
 **Register Person**
-![Register Person](https://raw.githubusercontent.com/rnataoliveira/code-challenge/master/docs/RegisterPerson.png)
+![Register Person](https://raw.githubusercontent.com/rnataoliveira/code-challenge/master/docs/RegisterPerson.png){: max-width="100%"}
 
 
 # Code Challenge EN-US
