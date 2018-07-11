@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { CallbackComponent } from 'redux-oidc'
 import { push } from 'react-router-redux'
 import { userManager } from '../'
+import spinner from '../../spinner.svg'
 
 const Callback = ({ redirect }) => (
   <CallbackComponent
@@ -12,7 +13,9 @@ const Callback = ({ redirect }) => (
     errorCallback={error => {
       console.error(error)
     }}>
-    <div>Redirecting...</div>
+    <div className="col text-center mt-5">
+      <img src={spinner} width="150px" />
+    </div>
   </CallbackComponent>
 )
 
