@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import marked from 'marked'
+import './home.css'
 
 class Home extends Component {
   constructor(props) {
@@ -17,7 +18,6 @@ class Home extends Component {
         })
       })
   }
-
   render() {
     return (
       <div className="card mt-4">
