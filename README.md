@@ -53,6 +53,17 @@ npm install
 npm start
 ```  
 ----------------------------------------------------------------------------------------------------------------------------------------
+## Some Screenshots
+
+**Registered Persons**  
+![Registered Persons](docs/RegisteredPersons.png?raw=true)
+
+**Person Details**  
+![Person Details](docs/PersonDetails.png)
+
+**Register Person**
+![Register Person](/docs/RegisterPerson.png)
+
 
 # Code Challenge EN-US
 
