@@ -19,7 +19,7 @@ class UpdatePerson extends Component {
   componentDidMount() {
     const personId = this.props.match.params.id
 
-    fetch(`http://localhost:5000/persons/${personId}`, {
+    fetch(`${process.env.REACT_APP_API}/persons/${personId}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${this.props.idToken}`,
@@ -77,7 +77,7 @@ class UpdatePerson extends Component {
 
     const personId = this.props.match.params.id
 
-    fetch(`http://localhost:5000/persons/${personId}`, {
+    fetch(`${process.env.REACT_APP_API}/persons/${personId}`, {
       method: 'PUT',
       mode: 'cors',
       headers: {

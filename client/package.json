@@ -22,7 +22,7 @@
     "redux-persist": "^5.10.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "REACT_APP_API=http://localhost:5000 REACT_APP_CLIENT_ID=820531171267-jeq714dtog6uivk8r0kvcoaid2t8o191.apps.googleusercontent.com react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

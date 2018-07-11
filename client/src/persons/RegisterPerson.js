@@ -54,7 +54,7 @@ class RegisterPerson extends Component {
   handleSubmit(e) {
     e.preventDefault()
 
-    fetch(`http://localhost:5000/persons`, {
+    fetch(`${process.env.REACT_APP_API}/persons`, {
       method: 'POST',
       mode: 'cors',
       headers: {

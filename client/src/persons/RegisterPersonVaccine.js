@@ -39,7 +39,7 @@ class RegisterPersonVaccine extends Component {
 
     const id = this.props.match.params.id
 
-    fetch(`http://localhost:5000/persons/${id}/vaccines`, {
+    fetch(`${process.env.REACT_APP_API}/persons/${id}/vaccines`, {
       method: 'POST',
       mode: 'cors',
       headers: {

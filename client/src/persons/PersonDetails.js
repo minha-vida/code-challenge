@@ -18,7 +18,7 @@ class PersonDetails extends Component {
   componentDidMount() {
     const id = this.props.match.params.id
 
-    fetch(`http://localhost:5000/persons/${id}`, {
+    fetch(`${process.env.REACT_APP_API}/persons/${id}`, {
       headers: {
         Authorization: `Bearer ${this.props.idToken}`
       }
@@ -33,7 +33,7 @@ class PersonDetails extends Component {
   }
 
   handleDeletePerson(id) {
-    fetch(`http://localhost:5000/persons/${id}`, {
+    fetch(`${process.env.REACT_APP_API}/persons/${id}`, {
       headers: {
         Authorization: `Bearer ${this.props.idToken}`
       },

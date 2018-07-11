@@ -20,7 +20,7 @@ class UpdateVaccine extends Component {
     const personId = this.props.match.params.id
     const vaccineId = this.props.match.params.vaccineId
 
-    fetch(`http://localhost:5000/persons/${personId}/vaccines/${vaccineId}`, {
+    fetch(`${process.env.REACT_APP_API}/persons/${personId}/vaccines/${vaccineId}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${this.props.idToken}`,
@@ -62,7 +62,7 @@ class UpdateVaccine extends Component {
     const personId = this.props.match.params.id
     const vaccineId = this.props.match.params.vaccineId
 
-    fetch(`http://localhost:5000/persons/${personId}/vaccines/${vaccineId}`, {
+    fetch(`${process.env.REACT_APP_API}/persons/${personId}/vaccines/${vaccineId}`, {
       method: 'PUT',
       mode: 'cors',
       headers: {

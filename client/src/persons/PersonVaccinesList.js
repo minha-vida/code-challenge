@@ -21,7 +21,7 @@ class PersonVaccinesList extends Component {
 
     const { id } = this.props
 
-    fetch(`http://localhost:5000/persons/${id}/vaccines`, {
+    fetch(`${process.env.REACT_APP_API}/persons/${id}/vaccines`, {
       headers: {
         Authorization: `Bearer ${this.props.idToken}`
       }
@@ -41,7 +41,7 @@ class PersonVaccinesList extends Component {
   }
 
   handleDeleteVaccine(personId, vaccineId) {
-    fetch(`http://localhost:5000/persons/${personId}/vaccines/${vaccineId}`, {
+    fetch(`${process.env.REACT_APP_API}/persons/${personId}/vaccines/${vaccineId}`, {
       headers: {
         Authorization: `Bearer ${this.props.idToken}`
       },

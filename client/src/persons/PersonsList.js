@@ -19,7 +19,7 @@ class PersonsList extends Component {
       loading: true
     })
 
-    fetch('http://localhost:5000/persons', {
+    fetch(`${process.env.REACT_APP_API}/persons`, {
       headers: {
         Authorization: `Bearer ${this.props.idToken}`
       }
