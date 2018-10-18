@@ -4,7 +4,7 @@ Well, let we first tell you a pretty short history!
 
 Lately our users are afraid to lose their vaccination registry.
 
-So, in order help our users with this problem, it's was request a web application for handling vaccination registries and you will help us!
+So, in order help our users with this problem, it's was requested a web application for handling vaccination registries and you will help us!
 
 ## What you'll do
 
