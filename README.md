@@ -1,3 +1,70 @@
+# 🚧 code-challenge resolution
+ ## Clone
+
+ ```
+ git clone https://github.com/rnataoliveira/code-challenge
+ ```
+ ----------------------------------------------------------------------------------------------------------------------------------------
+
+ ## Server
+
+  **Go to the server folder**  
+ ```
+ cd challenge/server
+ ```
+ **Open the file appsettings.json and set a valid value for the string**  
+ ```json
+"ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Database=challenge;User Id=sa;Password=P@55w0rd"
+  }
+```
+
+**Restore packages**  
+ ```  
+ dotnet restore
+ ```
+
+**Apply Migrations**  
+```
+dotnet ef database update
+```
+
+**Run**  
+ ``` 
+ dotnet run  
+ ```
+----------------------------------------------------------------------------------------------------------------------------------------
+
+ ## Client
+
+ **Go to client folder**  
+
+ ```
+cd challenge/client
+```
+
+**Install packages** 
+```
+npm install
+```
+
+**Run**  
+``` 
+npm start
+```  
+----------------------------------------------------------------------------------------------------------------------------------------
+## Some Screenshots
+
+**Registered Persons**  
+![Registered Persons](https://raw.githubusercontent.com/rnataoliveira/code-challenge/master/docs/RegisteredPersons.png)
+
+**Person Details**  
+![Person Details](https://raw.githubusercontent.com/rnataoliveira/code-challenge/master/docs/PersonDetails.png)
+
+**Register Person**
+![Register Person](https://raw.githubusercontent.com/rnataoliveira/code-challenge/master/docs/RegisterPerson.png)
+
+
 # Code Challenge EN-US
 
 Well, let we first tell you a pretty short history!
