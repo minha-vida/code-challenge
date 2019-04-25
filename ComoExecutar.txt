@@ -1,0 +1,27 @@
+## Como executar:
+
+1 - o projeto roda em container linux
+
+2 - para uso do sql server no container são necessárias 2 alterações no settings do docker:
+  2.1 - ativar o shared drives no c:
+  2.2 - na aba advanced, separar 4096mb de memoria
+  fonte/link: https://medium.com/@renato.groffe/net-sql-server-2017-parte-1-executando-o-sql-server-em-um-container-docker-83abbed8eb7e
+
+3 - ir até a pasta do projeto web e abrir o powershell ou cmd
+
+4 - baixar a imagem do sql server para linux, com o comando: docker pull microsoft/mssql-server-linux
+
+5 - rodar a imagem do sql server em um container com o comando: docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Senha1234" -p 1433:1433 -d microsoft/mssql-server-linux:latest
+
+6 - abrir a solution do projeto, abrir o package manager console e executar com o projeto .Data como target o seguinte comando: update-database
+
+7 - gerar um publish do projeto com o comando: dotnet publish -c Release -o publish
+	(isso é necessário pois a solution contém mais de um project, se buildar sem isso ele não acha as referencias)
+
+8 - executar o comando: docker build -t aspnetapp .
+
+9 - executar o comando: docker run -d -p 8080:80 --name VacinaMinhaDeCadaDia aspnetapp
+
+10 - acessar a aplicação no localhost:8080
+
+qualquer coisa me avise por favor!
