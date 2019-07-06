@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="container main-container">
+  <h2>People</h2>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="pull-left">
+        <a class="btn btn-primary" id="novoEvento" [routerLink]="['/people/create']">
+          <span title="New Person" class="glyphicon glyphicon-plus-sign"></span> New Person
+        </a>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class='text-danger' *ngIf='errorMessage'>{{errorMessage}}</div>
+
+  <div class="page-size">
+    <div class="panel panel-default">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Vaccines</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let person of people'>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.vaccines.length }}</td>
+            <td>
+              <a [routerLink]="['/people/edit', evento.id]" title="Edit" class="btn btn-warning">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+              <a [routerLink]="['/people/remove', person.id]" title="Remove" class="btn btn-danger">
+                <span class="glyphicon glyphicon-trash"></span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

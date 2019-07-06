@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  serverApi:
+    image: vaccine.management.api:prod
+    build: 
+      context: ./server
+      dockerfile: Dockerfile.prod
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Production
+
+  client:
+    image: vaccine.management.client:prod
+    build: 
+      context: ./client
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"
+      - "8287:8287"
+    links:
+      - serverApi
